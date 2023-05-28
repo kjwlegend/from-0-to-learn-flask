@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>创建用户相关应用 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item active">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">创建用户相关应用</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#user" class="nav-link">创建用户模型User</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">同步数据库</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">创建登录注册视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p>在前几个章节我们已经详细的说了创建视图及url的方式，也熟悉了基本的增删改查方法，那么我们就可以利用之前所学的知识来实现用户相关应用，并构造好基本的登录注册功能视图！</p>
+<p>最开始我们创建目录的时候就在app文件夹下预留了一个auth的文件夹，相关登录注册以及用户相关的数据及视图模板都放到这个文件夹下边</p>
+<h2 id="_1">创建用户相关应用</h2>
+<p>在<code>app/auth/</code>目录下参照blog目录创建相关文件，这次我们将models和views放到文件夹中，使其成为一个块</p>
+<p>1、创建一个models的文件夹并在其内部创建一个<code>__init__.py</code>的文件及<code>auth.py</code>的文件</p>
+<p>2、创建一个views的文件夹并在其内部创建一个<code>__init__.py</code>的文件及<code>auth.py</code>的文件</p>
+<p>3、创建一个templates的文件夹并在其内部创建一个<code>login.html</code>的文件及<code>register.html</code>的文件</p>
+<p>目录结构如下</p>
+<pre><code>app/
+    auth/
+        __init__.py
+        models/
+            __init__.py
+            auth.py
+        views/
+            __init__.py
+            auth.py
+        templates/
+            login.html
+            register.html
+        static/
+    blog/
+    __init__.py
+RealProject/
+</code></pre>
+<h2 id="user">创建用户模型User</h2>
+<p>在<code>models/auth.py</code>文件中创建用户模型如下：</p>
+<pre><code class="language-python">from datetime import datetime
+from RealProject import db
+
+class BaseModel(db.Model):
+    &quot;&quot;&quot;基类模型
+    &quot;&quot;&quot;
+    __abstract__ = True
+
+    add_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, ) # 创建时间
+    pub_date = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False) # 更新时间
+
+
+class User(BaseModel):
+    &quot;&quot;&quot;用户模型
+    &quot;&quot;&quot;
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(128), unique=True, nullable=False)
+    password = db.Column(db.String(320), nullable=False)
+    avatar = db.Column(db.String(200), nullable=True)
+    is_super_user = db.Column(db.Boolean, nullable=True, default=False)     # 超级管理员标识
+    is_active = db.Column(db.Boolean, nullable=True, default=True)          # 是否为活跃用户
+    is_staff = db.Column(db.Boolean, nullable=True, default=False)          # 是否允许登录后台
+
+    def __repr__(self):
+        return '&lt;Category %r&gt;' % self.username
+</code></pre>
+<p>在<code>models/__init__.py</code>中引入用户模型</p>
+<pre><code class="language-python">from .auth import User
+</code></pre>
+<p>在<code>RealProject/__init__.py</code>工厂函数中注册模型models</p>
+<pre><code class="language-python">def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+
+    if test_config is None:
+        CONFIG_PATH = BASE_DIR / 'RealProject/settings.py'
+        app.config.from_pyfile(CONFIG_PATH, silent=True)
+    else:
+        # test_config为一个字典
+        app.config.from_mapping(test_config)
+
+    db.init_app(app)
+    migrate.init_app(app, db)
+    login_manager.init_app(app)
+
+    # 注册视图
+    register_bp(app)
+
+    # 注册模型
+    from app.blog import models
+    from app.auth import models 
+    return app
+</code></pre>
+<h2 id="_2">同步数据库</h2>
+<pre><code class="language-bash">flask db migrate
+flask db upgrade
+</code></pre>
+<p>备注：在同步之前记住一定要导出环境变量</p>
+<h2 id="_3">创建登录注册视图</h2>
+<p>在<code>app/auth/views/auth.py</code>文件中创建登录注册视图</p>
+<pre><code class="language-python">from flask import render_template, Blueprint, redirect, url_for
+from ..models import auth
+
+bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder='../templates', static_folder='../static')
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # 登录相关逻辑代码
+
+    return render_template('login.html')
+
+
+@bp.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        # 注册相关逻辑代码
+
+        # 注册成功跳转到登录页
+        return redirect(url_for('auth.login'))
+
+    return render_template('register.html')
+</code></pre>
+<p>这两个视图我们完全采用了蓝图方式绑定url和视图函数，其中template_folder和static_folder的路径一定要设置正确，否则找不到位于该目录下的templates文件夹，就无法正确加载！</p>
+<p>在<code>app/auth/views/__init__.py</code>文件中引入蓝图</p>
+<pre><code class="language-python">from .auth import bp
+</code></pre>
+<p>在<code>RealProject/__init__.py</code>中的<code>register_bp()</code>函数中注册蓝图</p>
+<pre><code class="language-python">def register_bp(app:Flask):
+    # 注册视图方法
+    from app.blog import views as blog
+    from app.auth import views as auth
+    app.register_blueprint(blog.bp) 
+    # 注册蓝图
+    app.register_blueprint(auth.bp) 
+
+    app.add_url_rule(rule='/', endpoint='index', view_func=blog.index)
+</code></pre>
+<p>到这里我们的用户模型及登录注册视图的基本框架就已经做好了，下一章节我们将利用Flask-login这个第三方扩展来实现博客的登录功能，大家可以提前去看看该扩展的文档！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

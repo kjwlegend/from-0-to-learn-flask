@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现全站导航菜单及首页数据展示 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item active">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#flask" class="nav-link">Flask上下文处理器</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">实现全站导航功能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">实现首页视图数据</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="flask">Flask上下文处理器</h2>
+<p>我们博客的设计是全站顶部菜单为通用菜单，调用的数据为文章的分类，那么如何将文章分类数据传递到每个页面的上下文呢？</p>
+<p>为了将新变量自动注入模板的上下文中，Flask 中存在上下文处理器context_processor。上下文处理器在呈现模板之前运行，并且能够将新值注入模板上下文。上下文处理器是返回字典的函数。然后，对于应用程序中的所有模板，此字典的键和值将与模板上下文合并：</p>
+<p>用法为如下所示，这只是一个例子：</p>
+<pre><code class="language-python">@app.context_processor
+def inject_user():
+    return dict(user=g.user)
+</code></pre>
+<p>上面的上下文处理器使一个名为 user 的变量在模板中可用，其值为 g.user。这个例子不是很有趣，因为g无论如何都可以在模板中使用，但它给出了它是如何工作的。</p>
+<p>变量不限于值;上下文处理器还可以使函数可用于模板（因为Python允许传递函数）：</p>
+<pre><code class="language-python">@app.context_processor
+def utility_processor():
+    def format_price(amount, currency=&quot;€&quot;):
+        return f&quot;{amount:.2f}{currency}&quot;
+    return dict(format_price=format_price)
+</code></pre>
+<p>上面的上下文处理器使format_price函数可用于所有模板：</p>
+<pre><code>{{ format_price(0.33) }}
+</code></pre>
+<p>您还可以将format_price构建为模板筛选器，但这演示了如何在上下文处理器中传递函数。</p>
+<h2 id="_1">实现全站导航功能</h2>
+<p>知道了上下文处理器的用法，实现这个功能就非常简单了！</p>
+<p>在RealProject目录的__init__.py中插入如下一个上下文回调函数</p>
+<pre><code class="language-python">def inject_category():
+    # 上下文处理器回调函数
+    &quot;&quot;&quot;
+    context_processor上下文处理器在呈现模板之前运行，并且能够将新值注入模板上下文。上下文处理器是返回字典的函数。
+    然后，对于应用程序中的所有模板，此字典的键和值将与模板上下文合并：
+    &quot;&quot;&quot;
+    from app.blog.models import Category
+    categorys = Category.query.limit(6).all()
+    return dict(categorys=categorys)
+</code></pre>
+<p>这个函数通过limit()方法查询出前6个数据，并通过一个字典返回，之后我们还需要将该回调函数注册到app的工厂函数当中！</p>
+<pre><code class="language-python">def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+
+    # 省略部分代码
+
+    # 全局上下文 
+    app.context_processor(inject_category)
+    return app
+</code></pre>
+<p>在app/blog/templates/base.html中循环查出我们返回的数据即可</p>
+<pre><code class="language-html">&lt;!-- 导航 --&gt;
+{% block navbar %}     
+&lt;template&gt;
+    &lt;b-navbar spaced shadow&gt;
+        &lt;template #brand&gt;
+            &lt;b-navbar-item&gt;
+                &lt;img src=&quot;{{ url_for('blog.static', filename='img/logo.png') }}&quot; alt=&quot;FlaskBlog&quot;&gt;
+            &lt;/b-navbar-item&gt;
+        &lt;/template&gt;
+        &lt;template #start&gt;
+            &lt;b-navbar-item href=&quot;/&quot; 
+                {% if request.path == '/' %}active {% endif %}&gt;
+                首页
+            &lt;/b-navbar-item&gt;
+
+            &lt;!-- 查询菜单数据 --&gt;
+            {% for cate in categorys %}
+            &lt;b-navbar-item href=&quot;#&quot;&gt;
+                {{ cate.name }}
+            &lt;/b-navbar-item&gt;
+            {% endfor %}    
+        &lt;/template&gt;
+
+        &lt;!-- ...省略部分代码 --&gt;
+    &lt;/b-navbar&gt;
+&lt;/template&gt;
+{% endblock navbar %}
+&lt;!-- 导航 end --&gt;
+</code></pre>
+<h2 id="_2">实现首页视图数据</h2>
+<p>在app/blog/views.py文件中的index首页视图函数中实现</p>
+<pre><code class="language-python">def index():
+    &quot;&quot;&quot;首页视图
+    &quot;&quot;&quot;
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(-Post.add_date).paginate(page, per_page=9, error_out=False)
+    post_list = pagination.items
+
+    import random
+    imgs = ['图一url', '图二url', '图三url']
+
+    for post in post_list:
+        post.img = random.sample(imgs, 1)[0]
+        # post.img = random.choice(imgs)
+
+    return render_template('index.html', posts=post_list, pagination=pagination)
+</code></pre>
+<p>这个视图函数中的查询逻辑在实现文章管理的时候已经实现过，这里唯一不同的区别就是我给这个返回数据新增了一个img的属性，因为在数据库我们没有设计文章形象图字段，我们用这种方式弥补，在imgs的列表中预设一些图片的url地址，之后随机抽取一个赋值给img属性，这样在模板中直接调用这个img属性就会获取到图片的url!</p>
+<p>在app/blog/templates/base.html中替换相关循环数据</p>
+<pre><code class="language-html">&lt;div class=&quot;columns is-multiline&quot;&gt;
+    {% for post in posts %}
+    &lt;div class=&quot;column is-4-fullhd is-6-desk&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+            &lt;div class=&quot;card-image&quot;&gt;
+                &lt;figure class=&quot;image is-4by5&quot;&gt;
+                    &lt;img src=&quot;{{ post.img }}&quot;
+                        alt=&quot;Placeholder image&quot;&gt;
+                &lt;/figure&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;card-content&quot;&gt;
+                &lt;div class=&quot;content&quot;&gt;
+                    &lt;p class=&quot;title is-4&quot;&gt;&lt;a href=&quot;&quot;&gt;{{ post.title }}&lt;/a&gt; &lt;/p&gt;
+                    &lt;p class=&quot;has-text-grey subtitle is-size-6&quot;&gt; 
+                        {{ post.desc }}
+                    &lt;/p&gt;
+                    &lt;time class=&quot;has-text-grey&quot; datetime=&quot;{{ post.add_date }}&quot;&gt;{{ post.add_date }}&lt;/time&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    {% endfor %}
+&lt;/div&gt;
+</code></pre>
+<p>最终效果：
+<img alt="首页" src="img/6.jpeg" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

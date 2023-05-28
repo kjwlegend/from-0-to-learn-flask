@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现博客首页视图及样式 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item active">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">实现博客首页视图及样式</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">静态文件</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">创建博客首页视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#add_url_ruleurl" class="nav-link">add_url_rule方法分离视图与url</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">创建博客首页模板文件</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">静态文件说明</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">最终样式</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">实现博客首页视图及样式</h1>
+<p>本套教程是一个Flask实战类教程，html/css/javascript等相关技术栈不会过多的去详细解释，那么就需要各位初学者尽可能的先去掌握这些基础知识，当然本套教程不需要你对其非常精通，但最起码得做到能看懂其意思！</p>
+<h2 id="_2">静态文件</h2>
+<p>静态文件是相对动态的web应用而言的，一般是指css和js文件！
+网站应用部署的时候，这些静态文件通常由Nginx等静态文件服务器处理，但是在开发过程中， Flask 也能做好 这项工作。</p>
+<p>一般，Flask的静态文件位于应用的 <code>/static</code> 中，模板文件位于应用的 <code>/templates</code>中。</p>
+<p>因此上，我们需要在<code>app/blog/</code>目录下分别创建一个<code>static</code>及<code>templates</code>的文件夹，用来对应的存放博客的静态文件及模板文件！</p>
+<h2 id="_3">创建博客首页视图</h2>
+<p>在<code>app/blog/views.py</code>中通过蓝图的方式创建首页视图,代码如下：</p>
+<p>Flask 会自动为你配置 Jinja2 模板引擎。</p>
+<p>使用 render_template() 方法可以渲染模板，你只要提供模板名称和需要 作为参数传递给模板的变量就行了。</p>
+<pre><code class="language-python">from flask import Blueprint, render_template
+
+bp = Blueprint('blog', __name__, url_prefix='/blog', template_folder='templates', static_folder='static')
+
+def index():
+    &quot;&quot;&quot;首页视图
+    &quot;&quot;&quot;
+    posts = [1,2,3,4,5,6]
+    return render_template('index.html', posts=posts)
+</code></pre>
+<p>在之前的蓝图应用章节我们对蓝图的使用做了大概的说明，其中这里新增了几个参数需要单独拉出来说一下，Blueprint类的template_folder参数就是指定该蓝图需要独立使用的模板文件夹，这个路径是相对路径或绝对路径，static_folder参数即设置静态文件目录，这样做的好处是我们就可以把每个功能模块拆分，静态文件和模板文件也可以独立拆分，这个思路是有借鉴django项目的布局方式，利于维护和后期的动态扩展！</p>
+<p>index函数则就是一个python的普通函数，只是在返回的时候我们使用了Flask提供的render_template方法来动态渲染模板和载入上下文数据，启动posts=posts就是我们构造的一个上下文演示数据，下来将会在模板文件中使用该上下文，这里需要注意的是我们并没有使用装饰器的方法去绑定url，下来我们要介绍一个url和视图分离的url方式！</p>
+<h2 id="add_url_ruleurl">add_url_rule方法分离视图与url</h2>
+<p>在项目目录（RealProject）的__init__.py中的工厂函数<code>create_app</code>底部创建如下代码</p>
+<pre><code class="language-python">
+def create_app(test_config=None):
+
+    app = Flask(__name__, instance_relative_config=True)
+
+    # 省略中间代码
+    ...
+    return app
+
+def register_bp(app:Flask):
+    # 注册视图方法
+    from app.blog import views as blog
+    # 注册蓝图
+    app.register_blueprint(blog.bp) 
+
+    # 首页url
+    app.add_url_rule(rule='/', endpoint='index', view_func=blog.index)
+</code></pre>
+<p>add_url_rule的参数解析：</p>
+<ul>
+<li>rule参数是真正的url，url开头必须以斜杠开始；</li>
+<li>endpoint参数是该url的端点，类似于django的name参数，它的作用是方便反查该url，一般的加载解析顺序是访问该url会先找该端点再找其关联的视图，然后开始处理逻辑，相当于url的id；</li>
+<li>view_func参数则是该url指向的函数，绑定url与函数！</li>
+</ul>
+<p>之后只需要将register_bp函数引入工厂函数中即可,工厂函数代码修改如下：</p>
+<pre><code class="language-python">def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+
+    if test_config is None:
+        CONFIG_PATH = BASE_DIR / 'RealProject/settings.py'
+        app.config.from_pyfile(CONFIG_PATH, silent=True)
+    else:
+        # test_config为一个字典
+        app.config.from_mapping(test_config)
+
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    # 注册视图
+    register_bp(app)
+
+    # 注册模型
+    from app.blog import models
+    from app.auth import models 
+    return app
+</code></pre>
+<h2 id="_4">创建博客首页模板文件</h2>
+<p>在<code>app/blog/templates</code>目录下创建<code>index.html</code>,这就是render_template方法第一个参数对应的模板文件，内容如下：</p>
+<p>模板中用到的相关Jinja2模板语法，请自行查询文档理解</p>
+<ul>
+<li>Jinja2 模板文档 ： https://jinja.palletsprojects.com/en/3.1.x/templates/</li>
+</ul>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;cn&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;{% block title %}{% endblock title %}&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('blog.static', filename='css/style.css') }}&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ url_for('blog.static', filename='css/buefy.min.css') }}&quot;&gt;
+    {% block extra_head_style %}{% endblock extra_head_style %}   
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;div id=&quot;app&quot; style=&quot;height:100%;&quot;&gt;
+        &lt;div class=&quot;container is-fluid1&quot; style=&quot;height:100%; &quot;&gt;
+            &lt;div class=&quot;is-block&quot; style=&quot;height:100%;&quot;&gt;
+                &lt;!-- 导航 --&gt;
+                {% block navbar %}     
+                &lt;template&gt;
+                    &lt;b-navbar spaced shadow&gt;
+                        &lt;template #brand&gt;
+                            &lt;b-navbar-item&gt;
+                                &lt;img src=&quot;{{ url_for('blog.static', filename='img/logo.png') }}&quot; alt=&quot;FlaskBlog&quot;&gt;
+                            &lt;/b-navbar-item&gt;
+                        &lt;/template&gt;
+                        &lt;template #start&gt;
+                            &lt;b-navbar-item href=&quot;#&quot;&gt;
+                                Home
+                            &lt;/b-navbar-item&gt;
+                            &lt;b-navbar-item href=&quot;#&quot;&gt;
+                                Documentation
+                            &lt;/b-navbar-item&gt;
+                            &lt;b-navbar-dropdown label=&quot;Info&quot;&gt;
+                                &lt;b-navbar-item href=&quot;#&quot;&gt;
+                                    About
+                                &lt;/b-navbar-item&gt;
+                                &lt;b-navbar-item href=&quot;#&quot;&gt;
+                                    Contact
+                                &lt;/b-navbar-item&gt;
+                            &lt;/b-navbar-dropdown&gt;
+                        &lt;/template&gt;
+
+                        &lt;template #end&gt;
+                            &lt;b-navbar-item tag=&quot;div&quot;&gt;
+                                &lt;div class=&quot;buttons&quot;&gt;
+                                    &lt;a class=&quot;button is-primary&quot;&gt;
+                                        &lt;strong&gt;Sign up&lt;/strong&gt;
+                                    &lt;/a&gt;
+                                    &lt;a class=&quot;button is-light&quot;&gt;
+                                        Log in
+                                    &lt;/a&gt;
+                                &lt;/div&gt;
+                            &lt;/b-navbar-item&gt;
+                        &lt;/template&gt;
+                    &lt;/b-navbar&gt;
+                &lt;/template&gt;
+                {% endblock navbar %}
+                &lt;!-- 导航 end --&gt;
+
+                {% block hero %}
+                &lt;section class=&quot;hero is-medium is-primary&quot;&gt;
+                    &lt;div class=&quot;hero-body&quot;&gt;
+                        &lt;p class=&quot;title&quot;&gt;
+                            Large hero
+                        &lt;/p&gt;
+                        &lt;p class=&quot;subtitle&quot;&gt;
+                            Large subtitle
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/section&gt;
+                {% endblock hero %}
+
+                {% block main %} 
+                &lt;div class=&quot;box is-marginless is-shadowless is-radiusless&quot;&gt;
+                    &lt;div class=&quot;columns is-multiline&quot;&gt;
+                        {% for post in posts %}
+                        &lt;div class=&quot;column is-4-fullhd&quot;&gt;
+                            &lt;div class=&quot;card&quot;&gt;
+                                &lt;div class=&quot;card-image&quot;&gt;
+                                    &lt;figure class=&quot;image is-4by3&quot;&gt;
+                                        &lt;img src=&quot;https://bulma.io/images/placeholders/1280x960.png&quot;
+                                            alt=&quot;Placeholder image&quot;&gt;
+                                    &lt;/figure&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;card-content&quot;&gt;
+                                    &lt;div class=&quot;media&quot;&gt;
+                                        &lt;div class=&quot;media-content&quot;&gt;
+                                            &lt;p class=&quot;title is-4&quot;&gt;&lt;a href=&quot;&quot;&gt;Flask博客实战 - 掌握增删改查&lt;/a&gt; &lt;/p&gt;
+                                        &lt;/div&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;div class=&quot;content&quot;&gt;
+                                        &lt;p class=&quot; has-text-grey is-size-7&quot;&gt; 
+                                            既然我们选择了使用ORM框架，那就必须熟练掌握其提供的增删改查方法，在正式编写视图事前，
+                                            本节内容我们先在shell环境中来了解和熟悉其增删改查的基础方法！
+                                        &lt;/p&gt;
+                                        &lt;time datetime=&quot;2016-1-1&quot;&gt;11:09 PM - 1 Jan 2016&lt;/time&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                        {% endfor %}
+                    &lt;/div&gt;
+
+                    &lt;nav class=&quot;pagination&quot; role=&quot;navigation&quot; aria-label=&quot;pagination&quot;&gt;
+                        &lt;a class=&quot;pagination-previous is-disabled&quot; title=&quot;This is the first page&quot;&gt;Previous&lt;/a&gt;
+                        &lt;a class=&quot;pagination-next&quot;&gt;Next page&lt;/a&gt;
+                        &lt;ul class=&quot;pagination-list&quot;&gt;
+                          &lt;li&gt;
+                            &lt;a class=&quot;pagination-link is-current&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;1&lt;/a&gt;
+                          &lt;/li&gt;
+                          &lt;li&gt;
+                            &lt;a class=&quot;pagination-link&quot; aria-label=&quot;Goto page 2&quot;&gt;2&lt;/a&gt;
+                          &lt;/li&gt;
+                          &lt;li&gt;
+                            &lt;a class=&quot;pagination-link&quot; aria-label=&quot;Goto page 3&quot;&gt;3&lt;/a&gt;
+                          &lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/nav&gt;
+                &lt;/div&gt;
+                {% endblock main %}
+
+
+
+                {% block footer %}      
+                &lt;div class=&quot;footer has-background-black-ter is-marginless&quot;&gt;
+                    &lt;div class=&quot;has-text-centered has-text-grey-light&quot;&gt;
+                        © 2022 &lt;a class=&quot;has-text-grey-light&quot; href=&quot;http://www.lotdoc.cn/blog/topic/detail/6/&quot;&gt;FlaskBlog博客实战&lt;/a&gt; 版权所有 备案号：陕ICP备20005686号
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                {% endblock footer %}
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src=&quot;{{ url_for('blog.static', filename='js/vue.js') }}&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;{{ url_for('blog.static', filename='js/buefy.min.js') }}&quot;&gt;&lt;/script&gt;
+    {% block extra_foot_script %}{% endblock extra_foot_script %}
+    &lt;script&gt;
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {}
+        })
+    &lt;/script&gt;
+    {% block vue_script %}{% endblock vue_script %}
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<h2 id="_5">静态文件说明</h2>
+<p>模板中我们看到加载静态文件的方法使用了<code>{{ url_for('blog.static', filename='css/style.css') }}</code>这样的语法，这是固定写法，第一个参数就是静态文件的路径，这里使用了蓝图来隔离了各应用之间的静态文件，那么<code>blog.static</code>即代表加载blog蓝图中的静态文件夹，filename则是静态文件的路径字符串，加载图片也是同样的方法！</p>
+<p>本项目前端依赖的第三方框架有：</p>
+<ul>
+<li>buefy -- https://buefy.org/</li>
+<li>bulma -- https://bulma.io/</li>
+<li>vue2  -- https://cn.vuejs.org/</li>
+</ul>
+<p>请自行下载该三个框架的相关文件引入，这里就当是给大家留的作业，去试试吧！</p>
+<h2 id="_6">最终样式</h2>
+<p><img alt="最终样式" src="img/index.jpeg" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

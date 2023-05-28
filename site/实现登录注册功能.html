@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现登录注册功能 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item active">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">实现用户的登录注册功能</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">实现用户的登录功能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">实现用户的注册功能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">实现用户退出登录功能</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">在模板中获取用户信息</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#login_required" class="nav-link">实现login_required装饰器</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">实现用户的登录注册功能</h1>
+<p>上一章节我们已经创建了一个用户应用，并创建了用户模型，那么我们这节就开始实现一个简单的用户登录注册功能！</p>
+<p>登录注册功能Flask有一个非常优秀的扩展Flask-login，我们可以选择使用这个扩展来实现，但为了学习我们暂时不使用这个第三方扩展，而是选择使用session来实现！</p>
+<h2 id="_2">实现用户的登录功能</h2>
+<p>首先，我们需要完善登录的html页面, 路径为：<code>app/auth/templates/login.html</code></p>
+<pre><code class="language-html">{% extends 'base.html' %}
+
+{% block title %} 登录页 {% endblock title %}
+
+{% block hero %}{% endblock hero %}
+
+{% block main %}
+&lt;div class=&quot;box is-radiusless is-marginless&quot; style=&quot;height: 80%;&quot;&gt;
+    &lt;div class=&quot;columns is-centered&quot;&gt;
+        &lt;div class=&quot;column is-5-fullhd&quot;&gt;
+            {% block auth_form %}
+            &lt;form action=&quot;&quot; method=&quot;post&quot; style=&quot;margin-top: 40%;&quot; class=&quot;box&quot;&gt;
+                &lt;div class=&quot; has-text-centered mb-3&quot;&gt;
+                    &lt;p class=&quot; subtitle&quot;&gt;登录&lt;/p&gt;
+                    &lt;h1 class=&quot;title&quot;&gt;FlaskBlog&lt;/h1&gt;
+                &lt;/div&gt;
+
+                &lt;!-- 消息闪现 --&gt;
+                {% with messages = get_flashed_messages() %}
+                &lt;b-message type=&quot;is-danger&quot;&gt;
+                  {% if messages %}
+                    &lt;ul class=flashes&gt;
+                    {% for message in messages %}
+                        &lt;li&gt;{{ message }}&lt;/li&gt;
+                    {% endfor %}
+                    &lt;/ul&gt;
+                {% endif %}
+                &lt;/b-message&gt;
+                {% endwith %}
+
+                &lt;div class=&quot;field&quot;&gt;
+                    &lt;p class=&quot;control has-icons-left has-icons-right&quot;&gt;
+                      &lt;input class=&quot;input&quot; type=&quot;text&quot; name=&quot;username&quot; id=&quot;id_username&quot; maxlength=&quot;128&quot; placeholder=&quot;Username&quot;&gt;
+                      &lt;span class=&quot;icon is-small is-left&quot;&gt;
+                        &lt;i class=&quot;fas fa-envelope&quot;&gt;&lt;/i&gt;
+                      &lt;/span&gt;
+                      &lt;span class=&quot;icon is-small is-right&quot;&gt;
+                        &lt;i class=&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+                      &lt;/span&gt;
+                    &lt;/p&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;field&quot;&gt;
+                    &lt;p class=&quot;control has-icons-left&quot;&gt;
+                      &lt;input class=&quot;input&quot; type=&quot;password&quot; name=&quot;password&quot; id=&quot;id_password&quot; maxlength=&quot;320&quot; minlength=&quot;6&quot; placeholder=&quot;Password&quot;&gt;
+                      &lt;span class=&quot;icon is-small is-left&quot;&gt;
+                        &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;
+                      &lt;/span&gt;
+                    &lt;/p&gt;
+                  &lt;/div&gt;
+                  &lt;div class=&quot;field&quot;&gt;
+                    &lt;p class=&quot;control&quot;&gt;
+                      &lt;input class=&quot;button is-success is-fullwidth&quot; type=&quot;submit&quot; value=&quot;Login&quot;&gt;
+                    &lt;/p&gt;
+                &lt;/div&gt;
+            &lt;/form&gt;
+            {% endblock auth_form %}
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+
+&lt;/div&gt;
+{% endblock main %}
+</code></pre>
+<p>代码详解：</p>
+<p>这个登陆模板继承了<code>base.html</code>的样式，这个<code>base.html</code>中的模块及代码其实就是我们之前实现的首页，只是我们把他作为一个模板基类来继承他！</p>
+<p>这段代码中其实就是写了一个输入账号密码的表单，其他多余的代码都是为了实现表单的样式而存在的！</p>
+<pre><code class="language-html">&lt;input class=&quot;input&quot; type=&quot;text&quot; name=&quot;username&quot; id=&quot;id_username&quot; maxlength=&quot;128&quot; placeholder=&quot;Username&quot;&gt;
+&lt;input class=&quot;input&quot; type=&quot;password&quot; name=&quot;password&quot; id=&quot;id_password&quot; maxlength=&quot;320&quot; minlength=&quot;6&quot; placeholder=&quot;Password&quot;&gt;
+</code></pre>
+<p>这里要特别说明的是这个input表单必须设置name属性，因为后端要根据此name属性来获取用户输入的值！其他属性则需要大家自行去了解学习！</p>
+<p>登录功能的后端逻辑视图, 路径为：<code>app/auth/views/auth.py</code></p>
+<pre><code class="language-python">@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    # 登录视图
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        error = None
+        user = auth.User.query.filter_by(username=username).first()
+        if user is None:
+            error = '该用户不存在！'
+        elif not check_password_hash(user.password, password):
+            error = '密码不正确.'
+
+        if error is None:
+            session.clear()
+            session['user_id'] = user.id
+            return redirect(url_for('index'))
+        flash(error)
+    return render_template('login.html')
+</code></pre>
+<p>代码详解：
+- <code>request.method == 'POST'</code>判断当前请求是否为post请求方式
+- <code>error = None</code> 来初始化一个错误变量，如果未通过登录验证，把错误信息通过消息传送到页面提示用户</p>
+<pre><code class="language-python">user = auth.User.query.filter_by(username=username).first()
+if user is None:
+    error = '该用户不存在！'
+elif not check_password_hash(user.password, password):
+    error = '密码不正确.'
+</code></pre>
+<p>这段代码首先在数据库通过用户提交的用户名去查询该用户，用户不存在就会返回None返回错误提示，用户存在则判断密码是否正确，这里用到了一个<code>check_password_hash()</code>的方法，这是用来将密文密码解密后与用户输入密码比对方法，与之对应的有一个<code>generate_password_hash()</code>的方法用来加密明文密码保存到数据库！</p>
+<pre><code class="language-python">if error is None:
+    session.clear()
+    session['user_id'] = user.id
+    return redirect(url_for('index'))
+flash(error)
+</code></pre>
+<p>这段代码则是如果没有返回任何错误提示，说明该提交的表单符合我们的要求，并且数据库也存在该用户信息，那么我们只需要清空session，重新将session中的user_id设置为当前登录的id即可！</p>
+<p>因此上在实现登录注册逻辑之前就必须引入这两个方法：</p>
+<pre><code class="language-python">from werkzeug.security import check_password_hash, generate_password_hash
+</code></pre>
+<p>登录功能虽然实现了，但我们数据库目前还没有任何一个用户，所以此时就应该要去实现用户的注册功能，向数据库新增用户，大概的逻辑是，用户输入用户名及两次密码，先判断该用户是否已经存在，存在则提示更换用户名，不存在则向数据库创建该用户信息，并清空session，重新设置user_id的值为注册用户的id，以达到注册成功后自动登录的目的！</p>
+<h2 id="_3">实现用户的注册功能</h2>
+<p>首先，我们需要完善注册的html页面, 路径为：<code>app/auth/templates/register.html</code></p>
+<pre><code class="language-html">{% extends 'login.html' %}
+
+{% block title %}注册{% endblock title %}
+
+{% block auth_form %}
+&lt;form action=&quot;&quot; method=&quot;post&quot; style=&quot;margin-top: 40%;&quot; class=&quot;box&quot;&gt;
+    &lt;div class=&quot; has-text-centered mb-3&quot;&gt;
+        &lt;p class=&quot; subtitle&quot;&gt;注册&lt;/p&gt;
+        &lt;h1 class=&quot;title&quot;&gt;FlaskBlog&lt;/h1&gt;
+    &lt;/div&gt;
+     &lt;!-- 消息闪现 --&gt;
+     {% with messages = get_flashed_messages() %}
+     &lt;b-message type=&quot;is-danger&quot;&gt;
+       {% if messages %}
+         &lt;ul class=flashes&gt;
+         {% for message in messages %}
+             &lt;li&gt;{{ message }}&lt;/li&gt;
+         {% endfor %}
+         &lt;/ul&gt;
+     {% endif %}
+     &lt;/b-message&gt;
+     {% endwith %}
+
+    &lt;div class=&quot;field&quot;&gt;
+        &lt;p class=&quot;control has-icons-left has-icons-right&quot;&gt;
+            &lt;input class=&quot;input&quot; type=&quot;text&quot; name=&quot;username&quot; id=&quot;id_username&quot; maxlength=&quot;128&quot; placeholder=&quot;Username&quot;&gt;
+            &lt;span class=&quot;icon is-small is-left&quot;&gt;
+                &lt;i class=&quot;fas fa-envelope&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            &lt;span class=&quot;icon is-small is-right&quot;&gt;
+                &lt;i class=&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field&quot;&gt;
+        &lt;p class=&quot;control has-icons-left&quot;&gt;
+            &lt;input class=&quot;input&quot; type=&quot;password&quot; name=&quot;password&quot; id=&quot;id_password&quot; maxlength=&quot;320&quot; minlength=&quot;6&quot; placeholder=&quot;Password&quot;&gt;
+            &lt;span class=&quot;icon is-small is-left&quot;&gt;
+                &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field&quot;&gt;
+        &lt;p class=&quot;control has-icons-left&quot;&gt;
+            &lt;input class=&quot;input&quot; type=&quot;password&quot; name=&quot;password1&quot; id=&quot;id_password1&quot; maxlength=&quot;320&quot; minlength=&quot;6&quot; placeholder=&quot;Password1&quot;&gt;
+            &lt;span class=&quot;icon is-small is-left&quot;&gt;
+                &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;field&quot;&gt;
+        &lt;p class=&quot;control&quot;&gt;
+            &lt;input class=&quot;button is-success is-fullwidth&quot; type=&quot;submit&quot; value=&quot;Register&quot;&gt;
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+{% endblock auth_form %}
+</code></pre>
+<p>这是注册页面的html，大家自行理解下，这里着重说一个我们在视图中通过<code>flash()</code>传递出来的消息，在模板中由以下代码接收！</p>
+<pre><code class="language-html">&lt;!-- 消息闪现 --&gt;
+{% with messages = get_flashed_messages() %}
+    &lt;b-message type=&quot;is-danger&quot;&gt;
+    {% if messages %}
+        &lt;ul class=flashes&gt;
+            {% for message in messages %}
+            &lt;li&gt;{{ message }}&lt;/li&gt;
+            {% endfor %}
+        &lt;/ul&gt;
+    {% endif %}
+    &lt;/b-message&gt;
+{% endwith %}
+</code></pre>
+<p>注册功能的后端逻辑视图, 路径为：<code>app/auth/views/auth.py</code></p>
+<pre><code class="language-python">@bp.route('/register', methods=['GET', 'POST'])
+def register():
+    # 注册视图
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        password1 = request.form['password1']
+
+        if password != password1:
+            flash('两次密码输入不一致！')
+            return redirect(url_for('auth.register'))
+
+        exists_user = auth.User.query.filter_by(username=username).first()
+        if exists_user:
+            flash('该用户名已经存在，请更换其他用户名！')
+            return redirect(url_for('auth.register'))
+        else:    
+            user = auth.User(username=username, password=generate_password_hash(password))
+            db.session.add(user)
+            db.session.commit()
+            session.clear()
+            session['user_id'] = user.id
+        return redirect(url_for('index'))
+    return render_template('register.html')
+</code></pre>
+<p>这个注册的逻辑基本上涵盖了我们之前所有章节学到的知识点，这里就不再过多的去一一解释代码，大家可自行理解并完善注释！</p>
+<h2 id="_4">实现用户退出登录功能</h2>
+<p>通过登录和注册功能的实现，我们已经清楚的知道，用户是否登录其实是判断session会话中是否存在用户的id来决定，那么推出登录，我们只需要清除session会话中的用户id即可，这里我们直接选择清空session的方式实现推出功能！</p>
+<pre><code class="language-python">@bp.route('/logout')
+def logout():
+    # 注销
+    session.clear()
+    return redirect(url_for('index'))
+</code></pre>
+<h2 id="_5">在模板中获取用户信息</h2>
+<pre><code class="language-python">@bp.before_app_request
+def load_logged_in_user():
+    # 每个请求之前都回去session中查看user_id来获取用户
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = auth.User.query.get(int(user_id))
+</code></pre>
+<p><code>bp.before_app_request()</code>注册一个在视图函数之前运行的函数，无论请求什么 URL。 都会先检查用户 ID 是否存储在会话中，并从数据库获取该用户的数据，将其存储在 g.user 上，该数据在请求期间持续。</p>
+<p>注册完这个函数之后，我们就可以在base.html中的导航的最右侧通过g.user的返回值，判断用户是否已经登录，显示不同的信息！</p>
+<pre><code class="language-html">&lt;!-- 导航 --&gt;
+{% block navbar %}     
+&lt;template&gt;
+    &lt;b-navbar spaced shadow&gt;
+        &lt;template #brand&gt;
+            &lt;b-navbar-item&gt;
+                &lt;img src=&quot;{{ url_for('blog.static', filename='img/logo.png') }}&quot; alt=&quot;FlaskBlog&quot;&gt;
+            &lt;/b-navbar-item&gt;
+        &lt;/template&gt;
+        &lt;template #start&gt;
+            &lt;b-navbar-item href=&quot;#&quot;&gt;
+                Home
+            &lt;/b-navbar-item&gt;
+
+        ... 省略部分代码
+        &lt;/template&gt;
+
+
+        &lt;template #end&gt;
+            &lt;b-navbar-item tag=&quot;div&quot;&gt;
+                &lt;!-- 判断用户是否已登录 --&gt;
+                {% if g.user %}              
+                &lt;div class=&quot; buttons&quot;&gt;
+                    &lt;!-- 获取用户信心 --&gt;
+                    &lt;a class=&quot;button is-primary&quot;&gt;欢迎您 {{ g.user['username'] }}&lt;/a&gt;
+                    &lt;a class=&quot;button is-success&quot;&gt;个人中心&lt;/a&gt;
+                    &lt;!-- 显示推出按钮 --&gt;
+                    &lt;a class=&quot;button is-danger&quot; href=&quot;{{ url_for('auth.logout') }}&quot;&gt;退出&lt;/a&gt;
+                &lt;/div&gt;
+                {% else %}
+                &lt;!-- 用户未登录，显示登录注册按钮 --&gt;
+                &lt;div class=&quot;buttons&quot;&gt;
+                    &lt;a class=&quot;button is-primary&quot; href=&quot;{{ url_for('auth.register') }}&quot;&gt;
+                        &lt;strong&gt;Sign up&lt;/strong&gt;
+                    &lt;/a&gt;
+                    &lt;a class=&quot;button is-light&quot; href=&quot;{{ url_for('auth.login') }}&quot;&gt;Log in&lt;/a&gt;
+                &lt;/div&gt;
+                {% endif %}
+            &lt;/b-navbar-item&gt;
+        &lt;/template&gt;
+    &lt;/b-navbar&gt;
+&lt;/template&gt;
+{% endblock navbar %}
+&lt;!-- 导航 end --&gt;             
+</code></pre>
+<h2 id="login_required">实现login_required装饰器</h2>
+<p>对于像下一章节我们要实现的用户中心以及管理后台，则必须是带有权限的访问，最基本的权限应该是必须是登录用户，那么所以说对于那些未登录的用户我们需要拒绝访问的功能！</p>
+<p>这个其实思路也非常简单，既然在实现模板中调用用户信息的时候，我们把当前登录的用户信息添加到了g对象，那么我们只需要判断g.user的返回值是否为None即可判断用户是否登陆！</p>
+<pre><code class="language-python">def login_required(view):
+    # 限制必须登录才能访问的页面装饰器
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+    return wrapped_view
+</code></pre>
+<p>到这里关于用户登录注册相关的基本权限问题我们就完成了，注意这些视图函数都在<code>app/auth/views/auth.py</code>文件中！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

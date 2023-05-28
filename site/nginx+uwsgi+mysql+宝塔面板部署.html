@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>nginx+uwsgi+mysql+宝塔面板部署 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item active">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">部署项目</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">宝塔面板准备</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">创建站点及数据库</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">收集依赖并打包上传到目录解压</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#uwsgi" class="nav-link">配置uwsgi</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#nginx" class="nav-link">配置nginx</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">创建虚拟环境安装依赖并启动项目</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">启动项目，部署完成</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">部署项目</h1>
+<p>我们的项目已经基本的框架和功能都完善好了，是不是已经迫不及待的想把项目发布到线上向伙伴们炫耀了！</p>
+<p>部署项目是一个涉及知识面比较广的技能，那么我们还是以最简单，最容易上手的方式先来实现他再说，至于是否真的理解其中的原理，那就要在项目之外去学习更多的知识！</p>
+<h2 id="_2">宝塔面板准备</h2>
+<p>宝塔面板是一款非常优秀的服务器运维软件，可以很方便的部署包括PHP/JAVA/PYTHON等各种语言的项目，可以很方便的使用各种部署方案，无论是nginx还是mysql等更多相关第三方所用到的软件几乎都可以在软件商店一键安装，非常适合初学者，并且很多公司也是用宝塔面板来做日常的维护！</p>
+<p>如何下载安装，需要大家去完成，官方网站也给了很详细的使用教程和文档，大家可移步到官方去看！</p>
+<p>下载安装：https://www.bt.cn/new/download.html</p>
+<p><img alt="" src="img/bt.png" /></p>
+<h2 id="_3">创建站点及数据库</h2>
+<p><img alt="" src="img/webmysql.png" /></p>
+<p>这里我们绑定了一个域名flask.proae.cn的域名，所以再次之前要先将域名解析到服务器，这里会自动创建一个以域名为名称的目录来存放项目文件，项目文件夹内默认新建的几个文件可全部删除！同时创建了一个flaskdb的数据库，这样我们的站点和数据库就建好完成了！</p>
+<h2 id="_4">收集依赖并打包上传到目录解压</h2>
+<p>在项目根目录的终端激活虚拟环境，运行以下命令收集项目依赖：</p>
+<pre><code class="language-bash">pip freeze &gt; requirements.txt
+</code></pre>
+<p>这个命令会在项目根目录生成一个requirements.txt的文本文档，里边记录了项目所用到的所有依赖！后续部署的时候我们将用这个文件快速安装依赖！</p>
+<p>打包文件，将除虚拟环境venv文件夹的其他所有文件压缩打包为flask-blog.rar或.zip格式的文件。在宝塔面板中点击刚才新建网站的根目录选项的路径进入，将该压缩包上传并解压！</p>
+<p><img alt="" src="img/flaskblog.png" /></p>
+<p>如图所示，上传完成后压缩包后边选项会有个解压项，我这里解压后在一个flask-blog的文件夹，这里我们也不用将里边的项目移动到外层，需要改一下项目的文件根目录即可！</p>
+<p><img alt="" src="img/rootpath.png" /></p>
+<p>到这里我们的项目准备工作就做好了，下来就是进行uwsgi的配置和nginx的配置！</p>
+<h2 id="uwsgi">配置uwsgi</h2>
+<p>在项目的根目录，也就是flask-blog目录内新建一个deploy的文件夹，在其内部创建一个uwsgi.ini的文件，配置如下：</p>
+<pre><code class="language-ini">[uwsgi]
+master = True
+# 最大线程数
+processes = 10
+threads = 2
+# 项目路径
+chdir = /www/wwwroot/flask.proae.cn/flask-blog
+# 启动文件
+wsgi-file = %(chdir)/manage.py
+# 直接运行时使用http
+; http = 0.0.0.0:3000
+# 使用nginx转发时配置socket
+socket = 127.0.0.1:3000
+# 权限配置当前用户可读可写，组用户可读可写不可执行，其他用户无权限
+chmod-socket = 660
+# 自动清除pid文件
+vacuum = true
+# 配置虚拟环境路径
+virtualenv = %(chdir)/venv
+# 回调名称
+callable = app
+# pid文件存储路径
+pidfile = %(chdir)/deploy/uwsgi.pid
+daemonize = %(chdir)/deploy/uwsgi.log
+logto = %(chdir)/deploy/error.log
+</code></pre>
+<p>这段配置中的每一项都写的非常清楚，大家可自行按注释，如果我们不需要使用nginx来转发静态文件，那么将<code>socket = 127.0.0.1:3000</code>这项删除或注释，启用<code>http = 0.0.0.0:3000</code>这项即可，注意域名后边的端口号，一定要在服务器的安全组开放！</p>
+<p>他们两个的区别是一个http配置当uwsgi启动后，可以通过绑定该服务器的域名加端口号直接访问到站点，意思是不配合nginx网站就已经部署好了！</p>
+<p>但是nginx是一款非常优秀的静态文件服务器，一般我们都会采用nginx来监听后端来转发请求的部署方式，所以我们这里选择<code>socket = 127.0.0.1:3000</code>的配置，改成这样这个端口号是不可以直接访问的，只有通过nginx的监听转发才能获取！</p>
+<h2 id="nginx">配置nginx</h2>
+<p><img alt="" src="img/nginx.png" /></p>
+<p>点击站点的设置选项，选择配置文件项，把默认的内容全部删除，替换为如图所示的内容即可,代码如下，每一项的注释大家自行查阅理解！</p>
+<pre><code class="language-ini">server {
+    listen 80;                              # 监听端口
+    server_name flask.proae.cn;            # 域名
+    location / {
+        uwsgi_pass 127.0.0.1:3000;          # uwsgi的stock服务
+        include uwsgi_params;               # 固定搭配
+    } 
+    location /admin/static {                      # 静态文件转发路径
+        alias /www/wwwroot/flask.proae.cn/flask-blog/app/admin/static/;
+    } 
+    location /blog/static {                      # 静态文件转发路径
+        alias /www/wwwroot/flask.proae.cn/flask-blog/app/blog/static/;
+    } 
+}
+</code></pre>
+<p>这些配置项做完之后，就是去配置我们的虚拟环境，因为我们再uwsgi.ini的文件中配置的时候启用了虚拟环境配置项<code>virtualenv = %(chdir)/venv</code>,这里推荐大家这样做，这样可以部署多个项目的时候，依赖互相隔离，版本之间互不影响！</p>
+<h2 id="_5">创建虚拟环境安装依赖并启动项目</h2>
+<p>点击网站的根目录选项的路径，进入flask-blog的根目录，点击终端按钮，启动宝塔面板的终端！</p>
+<p><img alt="" src="img/bash.png" /></p>
+<p>在终端运行如下几个命令创建虚拟环境并安装依赖，步骤是：</p>
+<p>创建虚拟环境：<code>python3 -m venv venv</code></p>
+<p>激活虚拟环境：<code>source venv/bin/activate</code></p>
+<p>安转依赖：<code>pip install -r requirements.txt</code></p>
+<p>安装uwsgi: <code>pip install uwsgi</code></p>
+<p>等待以上几个命令安装完成之后，还有最后非常重要的一步，配置数据库！</p>
+<p>将RealProject目录下的settings.py中的SQLALCHEMY_DATABASE_URI配置项修改为最开始新建的数据库账号密码，如下所示：</p>
+<pre><code class="language-python">SQLALCHEMY_DATABASE_URI = 'mysql://flaskdb:flaskdb@127.0.0.1:3306/flaskdb?charset=utf8'
+</code></pre>
+<p>之后就是同步数据库，有两种方式可以完成该工作！</p>
+<p>第一种方式是把开发阶段的数据库文件导出到一个.sql文件中，然后再宝塔面板中将该sql文件导入即可！</p>
+<p><img alt="" src="img/flaskdb.png" /></p>
+<p>第二种方式就是使用Flask_Migrate来同步数据库即可，这里就需要在终端导出环境变量，并同步数据库！</p>
+<p>配置环境变量，终端运行如下命令：</p>
+<pre><code>export FLASK_APP=RealProject
+export FLASK_ENV=development
+</code></pre>
+<p>终端运行同步迁移数据库命令</p>
+<pre><code>flask db migrate
+flask db upgrade
+</code></pre>
+<p>这种方法有个弊端就是数据库中不存在任何数据，超级管理员也就不存在，那么就需要我们进入shell环境，手动设置超级管理员！或者在项目中实现一个命令行来快速生成一个默认的管理员！</p>
+<h2 id="_6">启动项目，部署完成</h2>
+<p>启动uwsgi命令：<code>uwsgi --ini deploy/uwsgi.ini</code></p>
+<p>使用以上命令之后会启动uwsgi服务，完成后项目的deploy目录下会生成一个uwsgi.log的日期文件和一个记录了进程号uwsgi.pid的文件，不出问题我们的项目就已经部署成功，如果有问题我们可查看uwsgi.log的日志文件去排查相关错误，进一步调试！</p>
+<p>部署是一件非常具有挑战性的技能，需要我们不断的去深入学习才能掌握其中难点，当然还有很多不同的部署方式，这里的简单部署方式仅仅只是开始，也是给我们提供一个思路，万变不离其宗，不同的部署方式和工具最终的目的都是殊途同归，根据自己的理解并深入掌握其中一种即可傲世天下！</p>
+<p>祝大家学习愉快，这不是结束，这才是你迈向更高台阶的开始！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

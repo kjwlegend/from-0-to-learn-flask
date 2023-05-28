@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>集成富文本编辑器Quill - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item active">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#quill" class="nav-link">富文本编辑器Quill</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#quill_1" class="nav-link">集成Quill</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">实现后端图片上传接口</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="quill">富文本编辑器Quill</h1>
+<p>为什么需要集成富文本编辑器？</p>
+<p>一个博客最主要的功能是什么，那就是写作，如果不能对我们发布的内容进行排版美化，那么我们所发布的内容又有什么意义? 对于阅读者来说也是非常的不友好和不尊重，一篇排版精良的文章往往会让人赏心悦目，也会让读者爱上你的博客，所以富文本编辑器的使用就显得非常重要！</p>
+<p>为什么选择富文本编辑器Quill?</p>
+<p>大家可能会有疑问，市面上那么多富文本编辑器为什么选择他，首先是Quill富文本编辑器是一款开源的编辑器，它在 GitHub 上的 star 数名列前茅。体验下来，它的优势是轻量、兼容性强、支持的插件扩展丰富，需要用到什么额外功能时再去单独引入就好了。</p>
+<p>此外，它还有适用于 Vue 和 React 的封装版本，无论你习惯用哪个前端框架，都能无差异地使用它。</p>
+<h2 id="quill_1">集成Quill</h2>
+<p>集成Quill的思路是在新增文章时显示空白的富文本编辑器，并将编辑器的内容同步赋值给表单，在编辑文章时则必须回显内容到富文本编辑器并同步修改表单内容！</p>
+<p>在app/admin/templates/admin/article_form.html中新增表单元素</p>
+<p>引入富文本编辑器的样式css以及用来异步提交的axios.js</p>
+<pre><code class="language-html">{% block extra_head_style %}
+&lt;link href=&quot;https://cdn.quilljs.com/1.3.6/quill.snow.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;https://unpkg.com/axios/dist/axios.min.js&quot;&gt;&lt;/script&gt;
+{% endblock extra_head_style %}
+</code></pre>
+<p>新增一个富文本容器id为editor的div</p>
+<pre><code class="language-html">&lt;div class=&quot;field&quot;&gt;
+    {{ form.content.label(class='label') }}
+    &lt;div class=&quot;control&quot;&gt;
+    {{ form.content(class='textarea', rows=&quot;10&quot;, placeholder='文章详情') }}
+    &lt;/div&gt;
+    &lt;!-- 富文本编辑器 --&gt;
+    &lt;div id=&quot;editor&quot; style=&quot;height: 500px;&quot;&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>在本模板中的地步引入Quill的js文件</p>
+<pre><code class="language-html">{% block extra_foot_script %}
+&lt;!-- Include the Quill library --&gt;
+&lt;script src=&quot;https://cdn.quilljs.com/1.3.6/quill.js&quot;&gt;&lt;/script&gt;
+{% endblock extra_foot_script %}
+</code></pre>
+<p>配置quill富文本编辑器</p>
+<pre><code class="language-js">{% block vue_script %}
+&lt;script&gt;
+    var toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike', 'link'],        // toggled buttons
+        ['blockquote', 'code-block', 'image'],
+
+        // [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+        [{ 'direction': 'rtl' }],                         // text direction
+
+        // [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean']                                         // remove formatting button
+    ];
+    var quill = new Quill('#editor', {
+        // debug: 'info',
+        modules: {
+            toolbar: toolbarOptions
+        },
+        theme: 'snow',
+        placeholder: 'Compose an epic...',
+        readOnly: false,
+        formats: {}
+    });
+
+
+    var html = quill.container.firstChild.innerHTML;
+    var content = document.querySelector(&quot;textarea[name='content']&quot;);
+
+    // 隐藏表单
+    content.setAttribute('style', 'display:none')
+    // 监听富文本并同步到表单
+    quill.on('text-change', function (delta, oldDelta, source) {
+        content.innerHTML = quill.container.firstChild.innerHTML;
+    });
+
+    // 回显内容
+    quill.pasteHTML(content.value)
+
+    // 上传图片方法
+    var showImageUI = function(){
+        var fileInput = this.container.querySelector('input.ql-image[type=file]');
+        if (fileInput == null) {
+            // 通过js方式构造一个上传表单
+            fileInput = document.createElement('input');
+            fileInput.setAttribute('type', 'file');
+            fileInput.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/bmp, image/x-icon');
+            fileInput.classList.add('ql-image');
+
+            // 监听change事件
+            fileInput.addEventListener('change', function () {
+                if (fileInput.files != null &amp;&amp; fileInput.files[0] != null) {
+                    const formData = new FormData();
+                    formData.append('upload', fileInput.files[0]);
+                    axios({
+                        url:'{{ url_for(&quot;admin.upload&quot;) }}',
+                        method:'post',
+                        data:formData,
+                        headers:{'content-type': 'multipart/form-data'},
+                    }).then(res =&gt; {
+                        // 返回错误提示
+                        if (res.data.code == 'err'){
+                            alert(res.data.message)
+                            return
+                        }
+                        // 设置图片回显到富文本编辑器
+                        var range = quill.getSelection(true);
+                        quill.insertEmbed(range.index, 'image', res.data.url);
+                        quill.setSelection(range.index + 1);
+                    }).catch(err =&gt; {
+                        console.log(err)
+                    })
+                }
+            });
+            this.container.appendChild(fileInput);
+        }
+        fileInput.click();
+    }
+
+    // 上传图片
+    var toolbar = quill.getModule('toolbar');
+    toolbar.addHandler('image', showImageUI);
+
+&lt;/script&gt;
+{% endblock vue_script %}
+</code></pre>
+<p>本段代码不会过多的去解释，相关内容可参考Quill的文档！</p>
+<p>toolbarOptions变量为配置富文本编辑器的菜单项！</p>
+<p>quill变量是初始化了一个富文本编辑器的对象</p>
+<p>下边这段代码则是获取富文本的输入值及表单，监听富文本编辑器的text-change事件，并同步赋值给表单！</p>
+<p>之后再将表单值回显到富文本编辑器，这个主要用来在编辑文章时回显内容！</p>
+<pre><code class="language-js">var html = quill.container.firstChild.innerHTML;
+var content = document.querySelector(&quot;textarea[name='content']&quot;);
+
+// 隐藏表单
+content.setAttribute('style', 'display:none')
+// 监听富文本并同步到表单
+quill.on('text-change', function (delta, oldDelta, source) {
+    content.innerHTML = quill.container.firstChild.innerHTML;
+});
+
+// 回显内容
+quill.pasteHTML(content.value)
+</code></pre>
+<p>上传图片配置</p>
+<pre><code class="language-js">// 上传图片
+var toolbar = quill.getModule('toolbar');
+toolbar.addHandler('image', showImageUI);
+</code></pre>
+<p>这是向上传图片表单自定义一个上传方法showImageUI，这个方法则是上传图片的全部前端内容，当然还必须实现一个上传表单的后端接口，也就是axios中通过post提交的那个接口url！</p>
+<h2 id="_1">实现后端图片上传接口</h2>
+<p>路径：app/admin/views.py</p>
+<pre><code class="language-python">@bp.route('/upload', methods=['POST'])
+@login_required
+def upload():
+    # 上传图片
+    if request.method == 'POST':
+        f = request.files.get('upload')
+        file_size = len(f.read())
+        f.seek(0)  # reset cursor position to beginning of file
+
+        if file_size &gt; 2048000:  # 限制上传大小为2M
+            return {
+                'code':'err',
+                'message': '文件超过限制2048000字节',
+            }
+        upload_path, filename = upload_file_path('upload', f)
+        f.save(upload_path)
+        return {
+            'code':'ok',
+            'url':f'/admin/static/upload/{filename}'
+        }
+</code></pre>
+<p>这段代码后端接口最主要的上传方法及验证方法我们在上传用户头像的章节已经讲过，这里我们只是复用了哪里的方法！</p>
+<p>至此，我们的富文本编辑器就集成成功了！</p>
+<ul>
+<li>最终效果</li>
+</ul>
+<p><img alt="" src="img/wzgl.jpeg" /></p>
+<p>最后，我们在调用富文本编辑器的内容时必须使用safe过滤器将富文本内容渲染{{ post.content|safe }}！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

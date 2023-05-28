@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现用户管理功能 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item active">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">实现用户管理</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">创建用户列表视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">创建添加用户视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">创建用户列表模板</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">创建添加用户模板</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">创建修改用户视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_7" class="nav-link">创建删除用户视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">实现用户管理</h1>
+<p>通过上几节的功能实现，我们应该已经对flask_sqlalchemy的增删改查非常熟悉了，那么我们就来实现
+最后一个用户管理的功能，用户管理功能部分内容，我们主要为大家展示如何实现flask的图片上传功能
+以及用户密码的修改思路及方法！</p>
+<h2 id="_2">创建用户列表视图</h2>
+<p>路径：app/admin/views.py</p>
+<pre><code class="language-python">@bp.route('/user')
+@login_required
+def user():
+    # 查看文章列表
+    page = request.args.get('page', 1, type=int)
+    pagination = User.query.order_by(-User.add_date).paginate(page, per_page=10, error_out=False)
+    user_list = pagination.items
+    return render_template('admin/user.html', user_list=user_list, pagination=pagination)
+</code></pre>
+<p>这个视图就非常简单，之前的章节我们已经做过很多次了，无需在此赘述！</p>
+<h2 id="_3">创建添加用户视图</h2>
+<p>在创建添加视图之前应该先要创建表单</p>
+<p>在app/admin/forms.py中创建一个CreateUserForm的表单类</p>
+<pre><code class="language-python">from flask_wtf.file import FileField, FileRequired, FileSize, FileAllowed
+
+class CreateUserForm(FlaskForm):
+    # 创建表单
+    username = StringField('username', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(max=32, message=&quot;不符合字数要求！&quot;)
+        ])
+    password = PasswordField('password', validators=[
+        # DataRequired(message=&quot;不能为空&quot;),
+        Length(max=32, message=&quot;不符合字数要求！&quot;)
+        ], description=&quot;修改用户信息时，留空则代表不修改！&quot;)
+    avatar = FileField(&quot;avatar&quot;, validators=[
+        # FileRequired(), 
+        FileAllowed(['jpg', 'png', 'gif'], message=&quot;仅支持jpg/png/gif格式&quot;),
+        FileSize(max_size=2048000, message=&quot;不能大于2M&quot;)],
+        description=&quot;大小不超过2M，仅支持jpg/png/gif格式，不选择则代表不修改&quot;)
+    is_super_user = BooleanField(&quot;是否为管理员&quot;)
+    is_active = BooleanField(&quot;是否活跃&quot;, default=True)
+    is_staff = BooleanField(&quot;是否锁定&quot;)
+</code></pre>
+<p>这里我们将定义一个avatar的表单为文件表单FileField，这个类并不是wtforms提供的，而是flask_wtf为我们二次封装好的类，他帮我们分装好了两个验证类FileAllowed类来验证文件格式，FileSize来验证文件的大小，这样我们就可以不必须再去在视图中对这两个去额外验证，用法如代码所示，其中max_size的值是字节数，大家注意换算！</p>
+<p>创建添加用户视图</p>
+<pre><code class="language-python">@bp.route('/user/add', methods=['GET', 'POST'])
+@login_required
+def user_add():
+    # 查看文章列表
+    # https://flask-wtf.readthedocs.io/en/1.0.x/form/#file-uploads
+    from .utils import upload_file_path
+    form = CreateUserForm()
+    if form.validate_on_submit():
+        f = form.avatar.data
+        avatar_path, filename = upload_file_path('avatar', f)
+        f.save(avatar_path)
+        user = User(
+            username=form.username.data, 
+            password=generate_password_hash(form.password.data),
+            avatar=f'avatar/{filename}',
+            is_super_user=form.is_super_user.data,
+            is_active=form.is_active.data,
+            is_staff=form.is_staff.data
+            )
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('admin.user'))
+    return render_template('admin/user_form.html', form=form)
+</code></pre>
+<p>flask上传文件其实非常简单，他帮我们封装了一个save()方法，只需要用文件<code>file.save(path)</code>,参数path就是文件的上传路径!</p>
+<p>这段代码中我们引入了一个upload_file_path的方法，这个方法是我自己封装的一个小工具，用来判断上传的路径是否存在，不存在则创建，并对文件名进行了处理，把文件名中的中文给剔除掉并重命名！具体代码如下：</p>
+<p>路径：app/admin/utils.py</p>
+<pre><code class="language-python">import os
+import uuid
+from RealProject.config import BASE_DIR
+from werkzeug.utils import secure_filename
+
+def _file_path(directory_name):
+    &quot;&quot;&quot;判断该路径是否存在不存在则创建
+    &quot;&quot;&quot;
+    file_path = BASE_DIR / f'app/admin/static/{directory_name}'
+    if os.path.exists(file_path) is False:
+        os.makedirs(file_path)
+    return file_path
+
+def update_filename(f):
+    &quot;&quot;&quot;修改文件名
+    &quot;&quot;&quot;
+    names = list(os.path.splitext(secure_filename(f.filename)))
+    names[0] = ''.join(str(uuid.uuid4()).split('-'))
+    return ''.join(names)
+
+def upload_file_path(directory_name, f):
+    # 构造上传文件路径
+    file_path = _file_path(directory_name)
+    filename = update_filename(f)
+    return file_path / filename, filename
+</code></pre>
+<p>这几个函数的代码非常简单，都是python的基础知识，大家自行理解，其中参数<code>directory_name</code>是文件夹名称，可以自己定义，一个字符串，也可以是路径字符串，
+f则是文件对象！</p>
+<h2 id="_4">创建用户列表模板</h2>
+<p>路径：app/admin/user.html</p>
+<pre><code class="language-html">{% extends 'admin/index.html' %}    
+
+{% block member %}
+&lt;div class=&quot;is-block&quot;&gt;
+    &lt;div class=&quot; is-pulled-left&quot;&gt;
+        &lt;h1 class=&quot; is-size-4&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;
+                &lt;i class=&quot;mdi mdi-tag-outline&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            用户管理
+        &lt;/h1&gt;
+    &lt;/div&gt;
+
+    {% block button %}
+    &lt;div class=&quot; is-pulled-right&quot;&gt;
+        &lt;a href=&quot;{{ url_for('admin.user_add') }}&quot; class=&quot; button is-primary is-light&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;mdi mdi-plus-thick&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span&gt;添加用户&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    {% endblock button %}
+    &lt;div class=&quot;is-clearfix&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot; dropdown-divider&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- 消息闪现 --&gt;
+    {% with messages = get_flashed_messages() %}
+    &lt;b-message type=&quot;is-success&quot;&gt;
+      {% if messages %}
+      &lt;ul class=flashes&gt;
+        {% for message in messages %}
+        &lt;li&gt;{{ message }}&lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+      {% endif %}
+    &lt;/b-message&gt;
+    {% endwith %}
+&lt;/div&gt;
+
+{% block table_content %}
+&lt;div class=&quot;table-container&quot;&gt;
+    &lt;table class=&quot;table is-fullwidth is-hoverable is-striped&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;ID&lt;/th&gt;
+              &lt;th&gt;头像&lt;/th&gt;
+              &lt;th&gt;用户名&lt;/th&gt;
+              &lt;th&gt;管理员&lt;/th&gt;
+              &lt;th&gt;是否活跃&lt;/th&gt;
+              &lt;th&gt;是否锁定&lt;/th&gt;
+              &lt;th&gt;添加日期&lt;/th&gt;
+              &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            {% for user in user_list %}       
+            &lt;tr&gt;
+                &lt;td&gt;{{ user.id }}&lt;/td&gt;
+                &lt;td&gt;
+                    {% if user.avatar %}
+                    &lt;figure class=&quot;image is-48x48&quot;&gt;
+                        &lt;img class=&quot;is-rounded&quot; src=&quot;/admin/static/{{ user.avatar }}&quot; alt=&quot;{{ user.username }}&quot;&gt;
+                    &lt;/figure&gt;
+                    {% else %}
+                    -
+                    {% endif %}
+                &lt;/td&gt;
+                &lt;td&gt;{{ user.username }}&lt;/td&gt;
+                &lt;td&gt;
+                    {% if user.is_super_user %}
+                        &lt;span class=&quot;icon has-text-success-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-check&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% else %}
+                        &lt;span class=&quot;icon has-text-danger-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-close&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% endif %}
+                &lt;/td&gt;
+                &lt;td&gt;
+                    {% if user.is_active %}
+                        &lt;span class=&quot;icon has-text-success-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-check&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% else %}
+                        &lt;span class=&quot;icon has-text-danger-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-close&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% endif %}
+                &lt;/td&gt;
+                &lt;td&gt;
+                    {% if user.is_staff %}
+                        &lt;span class=&quot;icon has-text-danger-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-lock-outline&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% else %}
+                        &lt;span class=&quot;icon has-text-success-dark&quot;&gt;
+                            &lt;i class=&quot;mdi mdi-lock-open-variant-outline&quot;&gt;&lt;/i&gt;
+                        &lt;/span&gt;
+                    {% endif %}
+                &lt;/td&gt;
+                &lt;td&gt;{{ user.add_date }}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class=&quot;tags&quot;&gt;
+                        &lt;a href=&quot;{{ url_for('admin.user_edit', user_id=user.id) }}&quot; class=&quot;tag is-success is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-square-edit-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            编辑
+                        &lt;/a&gt;
+                        &lt;a href=&quot;{{ url_for('admin.user_del', user_id=user.id) }}&quot; class=&quot;tag is-danger is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-trash-can-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            删除
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            {% endfor %}
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;nav class=&quot;pagination is-small&quot; role=&quot;navigation&quot; aria-label=&quot;pagination&quot;&gt;
+    {% if pagination.has_prev %}
+    &lt;a href=&quot;{{ url_for('admin.user') }}?page={{ pagination.prev_num }}&quot; class=&quot;pagination-previous&quot; title=&quot;This is the first page&quot;&gt;Previous&lt;/a&gt;
+    {% endif %}
+    {% if pagination.has_next %}
+    &lt;a href=&quot;{{ url_for('admin.user') }}?page={{ pagination.next_num }}&quot; class=&quot;pagination-next&quot;&gt;Next page&lt;/a&gt;
+    {% endif %}
+
+    &lt;ul class=&quot;pagination-list&quot;&gt;        
+        {% for page in pagination.iter_pages() %}
+            {% if page %} 
+                {% if page != pagination.page %}
+                &lt;li&gt;
+                    &lt;a href=&quot;{{ url_for('admin.user') }}?page={{ page }}&quot; class=&quot;pagination-link&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% else %}
+                &lt;li&gt;
+                    &lt;a class=&quot;pagination-link is-current&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% endif %}
+            {% else %}
+                &lt;span class=pagination-ellipsis&gt;&amp;hellip;&lt;/span&gt;
+            {% endif %}
+        {% endfor %}
+    &lt;/ul&gt;
+&lt;/nav&gt;
+{% endblock table_content %}
+{% endblock member %}
+</code></pre>
+<h2 id="_5">创建添加用户模板</h2>
+<p>创建app/admin/templates/admin/user_form.html</p>
+<pre><code class="language-html">{% extends 'admin/category.html' %}
+
+{% block button %}{% endblock button %}
+
+
+{% block table_content %}
+    &lt;form action=&quot;&quot; method=&quot;post&quot; class=&quot;mt-4&quot; enctype=&quot;multipart/form-data&quot;&gt;
+        {{ form.csrf_token }}
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.username.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.username(class='input', placeholder='用户名') }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.password.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.password(class='input', placeholder='密码') }}
+                &lt;p class=&quot;help has-text-grey-light&quot;&gt;
+                    {{ form.password.description }}
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.avatar.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.avatar(class='input',  placeholder='头像') }}
+                &lt;p class=&quot;help has-text-grey-light&quot;&gt;
+                    {{ form.avatar.description }}
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;field&quot;&gt;
+            &lt;label class=&quot;checkbox&quot;&gt;
+                {{ form.is_super_user }}
+                {{ form.is_super_user.label }}
+            &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+            &lt;label class=&quot;checkbox&quot;&gt;
+                {{ form.is_active }}
+                {{ form.is_active.label }}
+            &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+            &lt;label class=&quot;checkbox&quot;&gt;
+                {{ form.is_staff }}
+                {{ form.is_staff.label }}
+            &lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;is-block&quot;&gt;
+            &lt;div class=&quot;box has-background-light is-shadowless level&quot;&gt;
+                &lt;button class=&quot; is-danger button level-left&quot;&gt;删除&lt;/button&gt;
+                &lt;div class=&quot;level-right&quot;&gt;
+                    &lt;a href=&quot;{{ url_for('admin.user') }}&quot; class=&quot;button is-primary is-light mr-2&quot;&gt;返回&lt;/a&gt;
+                    &lt;input type=&quot;submit&quot; value=&quot;保存&quot; class=&quot; button is-success&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+{% endblock table_content %} 
+</code></pre>
+<h2 id="_6">创建修改用户视图</h2>
+<pre><code class="language-python">@bp.route('/user/edit/&lt;int:user_id&gt;', methods=['GET', 'POST'])
+@login_required
+def user_edit(user_id):
+    # 修改用户信息
+    user = User.query.get(user_id)
+
+    from .utils import upload_file_path
+    form = CreateUserForm(
+        username=user.username, 
+        password=user.password,
+        avatar=user.avatar,
+        is_super_user=user.is_super_user,
+        is_active=user.is_active,
+        is_staff=user.is_staff 
+    )
+    form.password.default = f'{user.password}'
+
+    if form.validate_on_submit():
+        user.username = form.username.data
+        if not form.password.data:
+            user.password = user.password
+        else:
+            user.password = generate_password_hash(form.password.data)
+        f = form.avatar.data
+        if user.avatar == f:
+            user.avatar = user.avatar
+        else:
+            avatar_path, filename = upload_file_path('avatar', f)
+            f.save(avatar_path)
+            user.avatar = f'avatar/{filename}'
+        user.is_super_user = form.is_super_user.data
+        user.is_active = form.is_active.data
+        user.is_staff = form.is_staff.data
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('admin.user'))
+    return render_template('admin/user_form.html', form=form, user=user)
+</code></pre>
+<p>修改用户视图这块的逻辑与保存逻辑基本一致，要注意的地方是对密码和头像的修改，因为在我们使用表单PasswordField表单类的时候他默认不会回显到表单，那么密码表单默认在修改的时候即为空表单，此时我们就可以判断表单是否为空来判断用户是否要修改密码，因为密码我们做了加密处理，在数据库中存储的是密文，而不是明文，所以这里就得特殊处理！</p>
+<p>修改密码逻辑代码：</p>
+<pre><code class="language-python"># 如果表单为空
+if not form.password.data:
+    # 密码不做任何修改原封保存
+    user.password = user.password
+else:
+    # 不为空则获取表单值加密保存
+    user.password = generate_password_hash(form.password.data)
+</code></pre>
+<p>头像这块处理的逻辑同样需要处理，可以判断表单值和修改用户的头像是否一致来处理，如果一样，说明未做任何修改，如果不同则执行上传图片操作，再替换头像表单中的值！</p>
+<p>逻辑代码如下：</p>
+<pre><code class="language-python">f = form.avatar.data
+if user.avatar == f:
+    user.avatar = user.avatar
+else:
+    avatar_path, filename = upload_file_path('avatar', f)
+    f.save(avatar_path)
+    user.avatar = f'avatar/{filename}'
+</code></pre>
+<h2 id="_7">创建删除用户视图</h2>
+<pre><code class="language-python">@bp.route('/user/del/&lt;int:user_id&gt;', methods=['GET', 'POST'])
+@login_required
+def user_del(user_id):
+    # 删除标签
+    user = User.query.get(user_id)
+    if tag:
+        db.session.delete(user)
+        db.session.commit()
+        flash(f'{user.username}删除成功')
+        return redirect(url_for('admin.user'))
+</code></pre>
+<p>到这里我们所有的关于基本的几个管理功能的逻辑就完成了，当然修改密码还有很多实现方法以及逻辑，到这里我们已经掌握了基本的所有内容，大家就可以按照自己的思路去实现这些功能，不一定非要与教程中保持一致！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

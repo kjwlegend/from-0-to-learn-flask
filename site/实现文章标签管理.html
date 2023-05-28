@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现文章标签管理 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item active">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">文章标签管理</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">创建标签的增删改查视图函数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#form" class="nav-link">创建标签的Form类</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">创建标签的列表页模板</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">创建标签的表单模板</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">文章标签管理</h1>
+<p>在一些常见的博客网站我们一般看到的文章标签都是多对多关系，也就是一个文章可以对应多个标签，多个标签也可以对应多个文章，一般的操作逻辑是，在添加文章的时候选择已有的标签，如果没有符合的标签的话，可以自己自行添加标签！</p>
+<p>这里我们现在目前的实现方案是选择了一种最简单的方式，就是标签单独管理，添加文章时只做选择不做添加。</p>
+<p>这里的代码大家参照之前两节的思路我们自行快速编写，并测试每个功能，这节我们不做过多讲解，会直接给大家贴出代码！</p>
+<h2 id="_2">创建标签的增删改查视图函数</h2>
+<p>路径：app/admin/views.py</p>
+<pre><code class="language-python">@bp.route('/tag')
+@login_required
+def tag():
+    # 查看标签列表
+    page = request.args.get('page', 1, type=int)
+    pagination = Tag.query.order_by(-Tag.add_date).paginate(page, per_page=10, error_out=False)
+    tag_list = pagination.items
+    return render_template('admin/tag.html', tag_list=tag_list, pagination=pagination)
+
+
+@bp.route('/tag/add', methods=['GET', 'POST'])
+@login_required
+def tag_add():
+    # 增加标签
+    form = TagForm()
+    if form.validate_on_submit():
+        tag = Tag(name=form.name.data)
+        db.session.add(tag)
+        db.session.commit()
+        flash(f'{form.name.data}添加成功')
+        return redirect(url_for('admin.tag'))
+    return render_template('admin/tag_form.html', form=form)
+
+
+@bp.route('/tag/edit/&lt;int:tag_id&gt;', methods=['GET', 'POST'])
+@login_required
+def tag_edit(tag_id):
+    # 修改标签
+    tag = Tag.query.get(tag_id)
+    form = TagForm(name=tag.name)
+    if form.validate_on_submit():
+        tag.name = form.name.data
+        db.session.add(tag)
+        db.session.commit()
+        flash(f'{form.name.data}添加成功')
+        return redirect(url_for('admin.tag'))
+    return render_template('admin/tag_form.html', form=form)
+
+
+@bp.route('/tag/del/&lt;int:tag_id&gt;', methods=['GET', 'POST'])
+@login_required
+def tag_del(tag_id):
+    # 删除标签
+    tag = Tag.query.get(tag_id)
+    if tag:
+        db.session.delete(tag)
+        db.session.commit()
+        flash(f'{tag.name}删除成功')
+        return redirect(url_for('admin.tag'))
+</code></pre>
+<h2 id="form">创建标签的Form类</h2>
+<p>路径：app/admin/forms.py</p>
+<pre><code class="language-python">class TagForm(FlaskForm):
+    # 标签表单
+    name = StringField('标签', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(max=128, message=&quot;不符合字数要求！&quot;)
+    ])
+</code></pre>
+<h2 id="_3">创建标签的列表页模板</h2>
+<p>路径：app/admin/templates/admin/tag.html</p>
+<pre><code class="language-html">{% extends 'admin/index.html' %}    
+
+{% block member %}
+&lt;div class=&quot;is-block&quot;&gt;
+    &lt;div class=&quot; is-pulled-left&quot;&gt;
+        &lt;h1 class=&quot; is-size-4&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;
+                &lt;i class=&quot;mdi mdi-tag-outline&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            标签管理
+        &lt;/h1&gt;
+    &lt;/div&gt;
+
+    {% block button %}
+    &lt;div class=&quot; is-pulled-right&quot;&gt;
+        &lt;a href=&quot;{{ url_for('admin.tag_add') }}&quot; class=&quot; button is-primary is-light&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;mdi mdi-plus-thick&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span&gt;添加标签&lt;/span&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    {% endblock button %}
+    &lt;div class=&quot;is-clearfix&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot; dropdown-divider&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- 消息闪现 --&gt;
+    {% with messages = get_flashed_messages() %}
+    &lt;b-message type=&quot;is-success&quot;&gt;
+      {% if messages %}
+      &lt;ul class=flashes&gt;
+        {% for message in messages %}
+        &lt;li&gt;{{ message }}&lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+      {% endif %}
+    &lt;/b-message&gt;
+    {% endwith %}
+&lt;/div&gt;
+
+{% block table_content %}
+&lt;div class=&quot;table-container&quot;&gt;
+    &lt;table class=&quot;table is-fullwidth is-hoverable is-striped&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;ID&lt;/th&gt;
+              &lt;th&gt;标签名称&lt;/th&gt;
+              &lt;th&gt;发布日期&lt;/th&gt;
+              &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+
+            {% for tag in tag_list %}       
+            &lt;tr&gt;
+                &lt;td&gt;{{ tag.id }}&lt;/td&gt;
+                &lt;td&gt;{{ tag.name }}&lt;/td&gt;
+                &lt;td&gt;{{ tag.add_date }}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class=&quot;tags&quot;&gt;
+                        &lt;a href=&quot;{{ url_for('admin.tag_edit', tag_id=tag.id) }}&quot; class=&quot;tag is-success is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-square-edit-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            编辑
+                        &lt;/a&gt;
+                        &lt;a href=&quot;{{ url_for('admin.tag_del', tag_id=tag.id) }}&quot; class=&quot;tag is-danger is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-trash-can-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            删除
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            {% endfor %}
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;nav class=&quot;pagination is-small&quot; role=&quot;navigation&quot; aria-label=&quot;pagination&quot;&gt;
+    {% if pagination.has_prev %}
+    &lt;a href=&quot;{{ url_for('admin.tag') }}?page={{ pagination.prev_num }}&quot; class=&quot;pagination-previous&quot; title=&quot;This is the first page&quot;&gt;Previous&lt;/a&gt;
+    {% endif %}
+    {% if pagination.has_next %}
+    &lt;a href=&quot;{{ url_for('admin.tag') }}?page={{ pagination.next_num }}&quot; class=&quot;pagination-next&quot;&gt;Next page&lt;/a&gt;
+    {% endif %}
+
+    &lt;ul class=&quot;pagination-list&quot;&gt;        
+        {% for page in pagination.iter_pages() %}
+            {% if page %} 
+                {% if page != pagination.page %}
+                &lt;li&gt;
+                    &lt;a href=&quot;{{ url_for('admin.tag') }}?page={{ page }}&quot; class=&quot;pagination-link&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% else %}
+                &lt;li&gt;
+                    &lt;a class=&quot;pagination-link is-current&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% endif %}
+            {% else %}
+                &lt;span class=pagination-ellipsis&gt;&amp;hellip;&lt;/span&gt;
+            {% endif %}
+        {% endfor %}
+
+    &lt;/ul&gt;
+&lt;/nav&gt;
+
+{% endblock table_content %}
+{% endblock member %}
+</code></pre>
+<h2 id="_4">创建标签的表单模板</h2>
+<p>路径：app/admin/templates/admin/tag_form.html</p>
+<pre><code class="language-python">{% extends 'admin/category.html' %}
+
+{% block button %}{% endblock button %}
+
+
+{% block table_content %}
+    &lt;form action=&quot;&quot; method=&quot;post&quot; class=&quot;mt-4&quot;&gt;
+        {{ form.csrf_token }}
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.name.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.name(class='input', placeholder='标签名称') }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;is-block&quot;&gt;
+            &lt;div class=&quot;box has-background-light is-shadowless level&quot;&gt;
+                &lt;button class=&quot; is-danger button level-left&quot;&gt;删除&lt;/button&gt;
+                &lt;div class=&quot;level-right&quot;&gt;
+                    &lt;a href=&quot;{{ url_for('admin.tag') }}&quot; class=&quot;button is-primary is-light mr-2&quot;&gt;返回&lt;/a&gt;
+                    &lt;input type=&quot;submit&quot; value=&quot;保存&quot; class=&quot; button is-success&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+{% endblock table_content %}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

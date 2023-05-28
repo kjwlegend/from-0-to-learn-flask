@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现文章管理增删改查 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item active">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">实现文章管理</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">实现查看文章列表</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">实现添加博客内容</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">实现修改博客内容</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">实现删除博客</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="_1">实现文章管理</h2>
+<p>文章管理的增删改查与我们在上一章节的分类增删改查基本一致，唯一不同的是添加文章的时候会同时添加分类及标签，一个是一对多的关系一个是多对多的关系，所以这一章节我们主要掌握这一个知识点即可！</p>
+<ul>
+<li>最终效果如下：</li>
+</ul>
+<p><img alt="" src="img/4.png" />
+<img alt="" src="img/5.png" /></p>
+<h2 id="_2">实现查看文章列表</h2>
+<p>基本的逻辑思路是：查询出所有文章列表数据，并对其分页！</p>
+<p>在app/admin/views.py中创建分类列表视图，代码如下：</p>
+<pre><code class="language-python">@bp.route('/article')
+@login_required
+def article():
+    # 查看文章列表
+    page = request.args.get('page', 1, type=int)
+    pagination = Post.query.order_by(-Post.add_date).paginate(page, per_page=10, error_out=False)
+    post_list = pagination.items
+    return render_template('admin/article.html', post_list=post_list, pagination=pagination)
+</code></pre>
+<h3 id="html">创建列表页html模板</h3>
+<p>在app/admin/templates/admin/目录下创建article.html模板</p>
+<pre><code class="language-html">{% extends 'admin/index.html' %}    
+
+{% block member %}
+&lt;div class=&quot;is-block&quot;&gt;
+    &lt;div class=&quot; is-pulled-left&quot;&gt;
+        &lt;h1 class=&quot; is-size-4&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;
+                &lt;i class=&quot;mdi mdi-file-document-multiple-outline&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            文章管理
+        &lt;/h1&gt;
+    &lt;/div&gt;
+    {% block button %}
+    &lt;div class=&quot;is-pulled-right&quot;&gt;
+        &lt;a href=&quot;&quot; class=&quot; button is-primary is-light&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;mdi mdi-plus-thick&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span&gt;添加文章&lt;/span&gt; 
+        &lt;/a&gt;
+    &lt;/div&gt;
+    {% endblock button %}
+    &lt;div class=&quot;is-clearfix&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot; dropdown-divider&quot;&gt;&lt;/div&gt;
+
+    &lt;!-- 消息闪现 --&gt;
+    {% with messages = get_flashed_messages() %}
+    &lt;b-message type=&quot;is-success&quot;&gt;
+      {% if messages %}
+      &lt;ul class=flashes&gt;
+        {% for message in messages %}
+        &lt;li&gt;{{ message }}&lt;/li&gt;
+        {% endfor %}
+      &lt;/ul&gt;
+      {% endif %}
+    &lt;/b-message&gt;
+    {% endwith %}
+&lt;/div&gt;
+{% block table_content %}
+&lt;div class=&quot;table-container&quot;&gt;
+    &lt;table class=&quot;table is-fullwidth is-hoverable is-striped&quot;&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;ID&lt;/th&gt;
+              &lt;th&gt;标题&lt;/th&gt;
+              &lt;th&gt;发布状态&lt;/th&gt;
+              &lt;th&gt;归属分类&lt;/th&gt;
+              &lt;th&gt;标签&lt;/th&gt;
+              &lt;th&gt;发布日期&lt;/th&gt;
+              &lt;th&gt;操作&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+
+            {% for post in post_list %}   
+            &lt;tr&gt;
+                &lt;td&gt;{{ post.id }}&lt;/td&gt;
+                &lt;td&gt;{{ post.title }}&lt;/td&gt;
+                &lt;td&gt;{{ post.has_type.name }}&lt;/td&gt;
+                &lt;td&gt;{{ post.category.name }}&lt;/td&gt;
+                &lt;td&gt;{{ post.tags|join(',') }} &lt;/td&gt;
+                &lt;td&gt;{{ post.add_date }}&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;div class=&quot;tags&quot;&gt;
+                        &lt;a href=&quot;&quot; class=&quot;tag is-success is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-square-edit-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            编辑
+                        &lt;/a&gt;
+                        &lt;a href=&quot;&quot; class=&quot;tag is-danger is-light&quot;&gt;
+                            &lt;span class=&quot;icon&quot;&gt;
+                                &lt;i class=&quot;mdi mdi-trash-can-outline&quot;&gt;&lt;/i&gt;
+                            &lt;/span&gt;
+                            删除
+                        &lt;/a&gt;
+                    &lt;/div&gt;
+                &lt;/td&gt;
+            &lt;/tr&gt;
+            {% endfor %}
+
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+&lt;nav class=&quot;pagination is-small&quot; role=&quot;navigation&quot; aria-label=&quot;pagination&quot;&gt;
+    {% if pagination.has_prev %}
+    &lt;a href=&quot;{{ url_for('admin.article') }}?page={{ pagination.prev_num }}&quot; class=&quot;pagination-previous&quot; title=&quot;This is the first page&quot;&gt;Previous&lt;/a&gt;
+    {% endif %}
+    {% if pagination.has_next %}
+    &lt;a href=&quot;{{ url_for('admin.article') }}?page={{ pagination.next_num }}&quot; class=&quot;pagination-next&quot;&gt;Next page&lt;/a&gt;
+    {% endif %}
+
+    &lt;ul class=&quot;pagination-list&quot;&gt;        
+        {% for page in pagination.iter_pages() %}
+            {% if page %} 
+                {% if page != pagination.page %}
+                &lt;li&gt;
+                    &lt;a href=&quot;{{ url_for('admin.article') }}?page={{ page }}&quot; class=&quot;pagination-link&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% else %}
+                &lt;li&gt;
+                    &lt;a class=&quot;pagination-link is-current&quot; aria-label=&quot;Page 1&quot; aria-current=&quot;page&quot;&gt;{{ page }}&lt;/a&gt;
+                &lt;/li&gt;
+                {% endif %}
+            {% else %}
+                &lt;span class=pagination-ellipsis&gt;&amp;hellip;&lt;/span&gt;
+            {% endif %}
+        {% endfor %}
+
+    &lt;/ul&gt;
+&lt;/nav&gt;
+{% endblock table_content %}
+{% endblock member %}
+</code></pre>
+<h2 id="_3">实现添加博客内容</h2>
+<p>在app/admin/forms.py中创建Post的表单类</p>
+<pre><code class="language-python">class PostForm(FlaskForm):
+    # 添加文章表单
+    title = StringField('标题', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(max=128, message=&quot;不符合字数要求！&quot;)
+    ])
+    desc = StringField('描述', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(max=200, message=&quot;不符合字数要求！&quot;)
+    ])
+    has_type = RadioField('发布状态', 
+        choices=(PostPublishType.draft.name, PostPublishType.show.name), 
+        default=PostPublishType.show.name)
+    category_id = SelectField(
+        '分类', 
+        choices=None, 
+        coerce=int,
+        validators=[
+            DataRequired(message=&quot;不能为空&quot;),
+        ]
+    )
+    content = TextAreaField('文章详情', 
+        validators=[DataRequired(message=&quot;不能为空&quot;)]
+    )
+    tags = SelectMultipleField('文章标签', choices=None, coerce=int)
+</code></pre>
+<p>这个表单类里边我们多了几个新的表单类，我们来逐一认识下</p>
+<ul>
+<li>
+<p><code>RadioField</code>也就是单选按钮表单，其中chioces参数则是定义他的选项,我们这里直接引入定义的PostPublishType的名称即可</p>
+</li>
+<li>
+<p><code>SelectField</code>是下拉表单类，choices是选项，coerce定义该表单值得类型，默认为str，我们这里传递的是分类的主键，所以改为int</p>
+</li>
+<li>
+<p><code>SelectMultipleField</code>多选表单，其他参数均与SelectField一致</p>
+</li>
+<li>
+<p><code>TextAreaField</code>则是多行输入表单</p>
+</li>
+</ul>
+<p>在app/admin/views.py中创建新增文章视图</p>
+<pre><code class="language-python">@bp.route('/article/add', methods=['GET', 'POST'])
+@login_required
+def article_add():
+    # 增加文章
+    form = PostForm()
+    form.category_id.choices = [(v.id,v.name) for v in Category.query.all()]
+    form.tags.choices = [(v.id,v.name) for v in Tag.query.all()]
+
+    if form.validate_on_submit():
+        post = Post(
+            title=form.title.data, 
+            desc=form.desc.data, 
+            has_type=form.has_type.data, 
+            category_id=int(form.category_id.data),
+            content=form.content.data,
+        )
+        post.tags = [Tag.query.get(tag_id) for tag_id in form.tags.data]
+        db.session.add(post)
+        db.session.commit()
+        flash(f'{form.title.data}文章添加成功')
+        return redirect(url_for('admin.article'))
+    return render_template('admin/article_form.html', form=form)
+</code></pre>
+<p>这里唯一要注意的是我们在表单创建的时候默认设置的分类和标签的选项值是None，那么在视图中初始化表单后，必须设置choices属性的值</p>
+<pre><code class="language-python">form = PostForm()
+form.category_id.choices = [(v.id,v.name) for v in Category.query.all()]
+form.tags.choices = [(v.id,v.name) for v in Tag.query.all()]
+</code></pre>
+<p>这样子我们表单中就直接从数据库获取到了该两项的值！</p>
+<p>其次再给category_id赋值的时候应该指定其类型为int</p>
+<p>多对多赋值,记住列表的每一个值必须为一个对象：<code>post.tags = [Tag.query.get(tag_id) for tag_id in form.tags.data]</code></p>
+<h3 id="_4">创建表单模板</h3>
+<p>在app/admin/templates/admin/目录下创建一个article_form.html</p>
+<pre><code class="language-html">{% extends 'admin/article.html' %}
+
+{% block button %}{% endblock button %}
+
+
+{% block table_content %}
+    &lt;form action=&quot;&quot; method=&quot;post&quot; class=&quot;mt-4&quot;&gt;
+        {{ form.csrf_token }}
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.title.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.title(class='input', placeholder='标题') }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.desc.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.desc(class='input', placeholder='描述') }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.category_id.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;div class=&quot;select is-fullwidth&quot;&gt;
+                    {{ form.category_id }}
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.content.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                {{ form.content(class='textarea', rows=&quot;10&quot;, placeholder='文章详情') }}
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;field&quot;&gt;
+            {{ form.tags.label(class='label') }}
+            &lt;div class=&quot;control&quot;&gt;
+                &lt;div class=&quot;select is-fullwidth is-multiple&quot;&gt;
+                    {{ form.tags(size='5') }}
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;field is-horizontal&quot;&gt;
+            {{ form.has_type.label(class='label') }}
+            &lt;div class=&quot;field-body ml-4&quot;&gt;
+                &lt;div class=&quot;control&quot;&gt;
+                    &lt;label class=&quot;radio&quot;&gt;
+                        &lt;input type=&quot;radio&quot; name=&quot;has_type&quot; value=&quot;draft&quot;&gt;
+                        草稿
+                    &lt;/label&gt;
+                    &lt;label class=&quot;radio&quot;&gt;
+                        &lt;input checked type=&quot;radio&quot; name=&quot;has_type&quot; value=&quot;show&quot;&gt;
+                        发布
+                    &lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;is-block&quot;&gt;
+            &lt;div class=&quot;box has-background-light is-shadowless level&quot;&gt;
+                &lt;button class=&quot; is-danger button level-left&quot;&gt;删除&lt;/button&gt;
+                &lt;div class=&quot;level-right&quot;&gt;
+                    &lt;a href=&quot;{{ url_for('admin.article') }}&quot; class=&quot;button is-primary is-light mr-2&quot;&gt;返回&lt;/a&gt;
+                    &lt;input type=&quot;submit&quot; value=&quot;保存&quot; class=&quot; button is-success&quot;&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+    &lt;/form&gt;
+{% endblock table_content %}    
+</code></pre>
+<p>最后修改添加分类按钮的url即可：</p>
+<p>路径：app/admin/templates/admin/article.html</p>
+<pre><code class="language-html">{% block button %}
+    &lt;div class=&quot;is-pulled-right&quot;&gt;
+        &lt;a href=&quot;{{ url_for('admin.article_add') }}&quot; class=&quot; button is-primary is-light&quot;&gt;
+            &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;mdi mdi-plus-thick&quot;&gt;&lt;/i&gt;&lt;/span&gt;
+            &lt;span&gt;添加文章&lt;/span&gt; 
+        &lt;/a&gt;
+    &lt;/div&gt;
+{% endblock button %}
+</code></pre>
+<h2 id="_5">实现修改博客内容</h2>
+<p>在app/admin/views.py中创建修改文章视图</p>
+<pre><code class="language-python">@bp.route('/article/edit/&lt;int:post_id&gt;', methods=['GET', 'POST'])
+@login_required
+def article_edit(post_id):
+    # 修改文章
+    post = Post.query.get(post_id)
+    tags = [tag.id for tag in post.tags]
+    form = PostForm(
+        title=post.title, desc=post.desc, 
+        category_id=post.category.id, has_type=post.has_type.value,
+        content=post.content, tags=tags
+    )
+
+    form.category_id.choices = [(v.id,v.name) for v in Category.query.all()]
+    form.tags.choices = [(v.id,v.name) for v in Tag.query.all()]
+
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.desc = form.desc.data
+        post.has_type = form.has_type.data
+        post.category_id=int(form.category_id.data)
+        post.content = form.content.data
+        post.tags = [Tag.query.get(tag_id) for tag_id in form.tags.data]
+        db.session.add(post)
+        db.session.commit()
+        flash(f'{form.title.data}文章修改成功')
+        return redirect(url_for('admin.article'))
+    return render_template('admin/article_form.html', form=form)
+</code></pre>
+<p>这里唯一需要注意的是在回显数据的时候多对多及一对多数据的回显需要特殊处理, 代码如下：</p>
+<pre><code class="language-python">post = Post.query.get(post_id)
+tags = [tag.id for tag in post.tags]
+form = PostForm(
+    title=post.title, desc=post.desc, 
+    category_id=post.category.id, has_type=post.has_type.value,
+    content=post.content, tags=tags
+)
+</code></pre>
+<p>其他的修改则和保存逻辑基本一致，大家多加练习即可掌握！</p>
+<h2 id="_6">实现删除博客</h2>
+<p>在app/admin/views.py中创建删除视图</p>
+<pre><code class="language-python">@bp.route('/article/delete/&lt;int:post_id&gt;', methods=['GET', 'POST'])
+@login_required
+def article_del(post_id):
+    # 删除文章
+    post = Post.query.get(post_id)
+    if post:  
+        db.session.delete(post)
+        db.session.commit()
+        flash(f'{post.title}文章删除成功')
+        return redirect(url_for('admin.article'))
+</code></pre>
+<p>最后，在删除按钮上增加该url即可</p>
+<pre><code class="language-html">&lt;a href=&quot;{{ url_for('admin.article_del', post_id=post.id) }}&quot; class=&quot;tag is-danger is-light&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;
+        &lt;i class=&quot;mdi mdi-trash-can-outline&quot;&gt;&lt;/i&gt;
+    &lt;/span&gt;
+    删除
+&lt;/a&gt;
+</code></pre>
+<p>下一章节便是文章标签的增删改查，这一部分内容不做深入的讲解，大家自行完成，当留作作业吧！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

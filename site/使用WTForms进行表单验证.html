@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>使用WTForms进行表单验证 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item active">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#wtforms" class="nav-link">使用 WTForms 进行表单验证</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#flask-wtf" class="nav-link">关于Flask-WTF</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">创建登录注册表单类</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">构建注册表单</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">重构登录和注册视图</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">模板中调用验证信息</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#html" class="nav-link">重构登录注册html模板</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="wtforms">使用 WTForms 进行表单验证</h1>
+<p>上一章节我们通过在html中直接编写表单的方式进行数据传递，并且在视图中对前端传递的数据进行了简单的认证，但是如果把验证数据的代码与逻辑混合在一起，将使得视图的代码不够清晰，并且难以维护，稍加疏忽就会产生验证漏洞，如果细心的同学其实可以发现，在之前的登录注册中我们一直没有对空表单进行验证，当然这是我故意为之，但如果在生产环境，这将是一个灾难的开始，所以，在编程中无论是前端还是后端都要求要对数据进行验证，作为后端，更要保持一种永远不相信前端传递数据的态度去做数据校验。</p>
+<p>本章节我们将使用Flask官方推荐的Flask-WTF扩展来重构我们的登录注册表单！</p>
+<h2 id="flask-wtf">关于Flask-WTF</h2>
+<p>Flask-WTF是Flask 和 WTForms 的简单集成，包括 CSRF、文件上传和 reCAPTCHA。</p>
+<ul>
+<li>安装Flask-WTF：</li>
+</ul>
+<pre><code class="language-python">pip install Flask-WTF
+</code></pre>
+<h2 id="_1">创建登录注册表单类</h2>
+<p>在<code>app/auth/</code>目录下新建一个forms.py的文件,所有的表单验证代码都放到这个文件当中！</p>
+<h3 id="_2">构建登录表单</h3>
+<pre><code class="language-python">from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField
+from wtforms.validators import DataRequired, Length, ValidationError, EqualTo
+from werkzeug.security import check_password_hash
+from .models import User
+
+class LoginForm(FlaskForm):
+    # 登录表单
+
+    def qs_username(username):
+        # 对该字段进行在传递之前处理
+        u = f'{username}123456'
+        print(u)
+        return username
+
+    username = StringField('username', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(max=32, message=&quot;不符合字数要求！&quot;)
+        ], filters=(qs_username,))
+    password = PasswordField('password', validators=[
+        DataRequired(message=&quot;不能为空&quot;),
+        Length(max=32, message=&quot;不符合字数要求！&quot;)
+        ])
+
+    def validate_username(form, field):
+        user = User.query.filter_by(username=field.data).first()
+        if user is None:
+            error = '该用户不存在！'
+            raise ValidationError(error)
+        elif not check_password_hash(user.password, form.password.data):
+            raise ValidationError('密码不正确')
+</code></pre>
+<p>代码详解：</p>
+<ul>
+<li>
+<p><code>class LoginForm(FlaskForm):</code> 
+创建了一个登录表单类，继承了FlaskForm类</p>
+</li>
+<li>
+<p><code>StringField, PasswordField</code> </p>
+</li>
+</ul>
+<p>这些都是wtforms内置的字段，负责呈现和数据转换。</p>
+<p>官方文档：https://wtforms.readthedocs.io/en/3.0.x/fields/</p>
+<p>他继承自Filed的基类，其中有一些比较重要的参数我们大概在这里理解一下！</p>
+<p>第一个字符串其实是该类的label参数，字段的标签，也就是转换到html中的label!</p>
+<p>validators传入对该字段的一些验证器，在提交数据之前对数据进行验证！</p>
+<p>filters这个参数比较特殊，官方文档并没有对其详细说明，只说是筛选器，其实怎么说就是在额外的方法中对该字段的值提前处理过滤，元组中的每个值都是一个回调函数，函数不需要传入括号，但这个回调函数默认有一个参数，这个参数就是本身该字段的值，所以在定义该函数时就必须传入一个参数！例如：我们定义username之前定义的这个方法！</p>
+<pre><code class="language-python">def qs_username(username):
+    # 对该字段进行在传递之前处理
+    u = f'{username}123456'
+    print(u)
+    return username
+</code></pre>
+<p>备注：必须返回处理后的这个参数，否则会触发DataRequired验证器，后端获取不到该表单的值！</p>
+<ul>
+<li><code>DataRequired, Length</code>
+这是内置的验证器，第一个是验证字段是否为空，第二个Length是验证输入长度，当然内置的还有很多，这里就不一一列举，具体我们可参考文档！</li>
+</ul>
+<p>官方文档： https://wtforms.readthedocs.io/en/3.0.x/validators/#custom-validators</p>
+<h3 id="_3">自定义验证用户名和密码</h3>
+<p>在之前的视图函数中我们对用户名和密码都做了校验，现在我们需要把验证的代码全部移动到表单类中，代码如下：</p>
+<pre><code class="language-python">def validate_username(form, field):
+    user = User.query.filter_by(username=field.data).first()
+    if user is None:
+        error = '该用户不存在！'
+        raise ValidationError(error)
+    elif not check_password_hash(user.password, form.password.data):
+        raise ValidationError('密码不正确')
+</code></pre>
+<ul>
+<li><code>validate_username(form, field)</code></li>
+</ul>
+<p>这个函数的写法是固定的<code>validate_{filed}</code>,validate_后边的filed是指你需要验证的某个字段名，比如我们这个验证，他主要就是对username字段进行验证，这个函数中参数的filed就是这个字段，通过<code>field.data</code>就可以获取到usernam的值。form参数则指代的是整个表单，可以用<code>form.{filed}.data</code>的方式获取表单类中某个具体字段的值！</p>
+<h2 id="_4">构建注册表单</h2>
+<p>当了解了登录表单后，我们完全就可以参照登录表单去实现注册表单，代码如下：</p>
+<p>路径：<code>app/auth/forms.py</code></p>
+<pre><code class="language-python">class RegisterForm(FlaskForm):
+    # 注册表单
+    username = StringField('username', validators=[
+        DataRequired(message=&quot;不能为空&quot;), 
+        Length(min=2, max=32, message=&quot;超过限制字数！&quot;)
+        ])
+    password = PasswordField('password', validators=[
+        DataRequired(message=&quot;不能为空&quot;),
+        Length(min=2, max=32, message=&quot;超过限制字数！&quot;),
+        EqualTo('password1', message='两次密码输入不一致！')
+        ])
+    password1 = PasswordField('password1')
+
+    def validate_username(form, field):
+        user = User.query.filter_by(username=field.data).first()
+        if user is not None:
+            error = '该用户名称已存在！'
+            raise ValidationError(error)
+</code></pre>
+<p>这里唯一需要注意的是两次密码是否输入一致，我们用了一个内置的验证器<code>EqualTo</code>,使用方式可完全参照代码，他会自动校验password和password1输入的值是否一致！</p>
+<h2 id="_5">重构登录和注册视图</h2>
+<ul>
+<li>路径：app/auth/views/auth.py</li>
+</ul>
+<pre><code class="language-python">from ..forms import LoginForm, RegisterForm
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    # 登录视图
+    # form = LoginForm(meta={'csrf': False}) # 禁用csrf
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = auth.User.query.filter_by(username=form.username.data).first()
+        session.clear()
+        session['user_id'] = user.id
+        return redirect(url_for('index'))
+    return render_template('login.html', form=form)
+
+
+@bp.route('/register', methods=['GET', 'POST'])
+def register():
+    # 注册视图
+    form = RegisterForm()
+    if form.validate_on_submit():
+        user = auth.User(username=form.username.data, password=generate_password_hash(form.password.data))
+        db.session.add(user)
+        db.session.commit()
+        session.clear()
+        session['user_id'] = user.id
+        return redirect(url_for('index'))
+    return render_template('register.html', form=form)
+</code></pre>
+<p>1、首先从forms.py中引入了我们定义的登录（LoginForm）和注册（RegisterForm）表单类！</p>
+<p>2、<code>form = RegisterForm()</code> 实例化表单类</p>
+<p>3、<code>if form.validate_on_submit():</code> 验证前端传递的数据是否有效，并且会自动判断是POST请求还是GET请求！</p>
+<p>4、 数据验证通过则进入之后的逻辑，未验证通过则返回我们在表单类中传入的验证提示！</p>
+<h2 id="_6">模板中调用验证信息</h2>
+<p>我们以调用username字段的验证提示为例，在模板中加入这段代码即可获得错误提示！</p>
+<pre><code class="language-html">&lt;!-- 表单验证 --&gt;
+{% if form.username.errors %}
+&lt;b-message type=&quot;is-danger&quot;&gt;
+    &lt;ul class=&quot;errors&quot;&gt;
+        {% for error in form.username.errors %}
+            &lt;li&gt;{{ error }}&lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+&lt;/b-message&gt;
+{% endif %}
+</code></pre>
+<h2 id="html">重构登录注册html模板</h2>
+<p>路径：app/auth/templates/login.html
+以登陆表单为例，代码如下：</p>
+<pre><code class="language-html">{% block auth_form %}
+    &lt;form action=&quot;&quot; method=&quot;post&quot; style=&quot;margin-top: 40%;&quot; class=&quot;box&quot;&gt;
+        &lt;div class=&quot; has-text-centered mb-3&quot;&gt;
+          &lt;p class=&quot; subtitle&quot;&gt;登录&lt;/p&gt;
+          &lt;h1 class=&quot;title&quot;&gt;FlaskBlog&lt;/h1&gt;
+        &lt;/div&gt;
+        {{ form.csrf_token }}
+        &lt;!-- 消息闪现 --&gt;
+        {% with messages = get_flashed_messages() %}
+        &lt;b-message type=&quot;is-danger&quot;&gt;
+          {% if messages %}
+          &lt;ul class=flashes&gt;
+            {% for message in messages %}
+            &lt;li&gt;{{ message }}&lt;/li&gt;
+            {% endfor %}
+          &lt;/ul&gt;
+          {% endif %}
+        &lt;/b-message&gt;
+        {% endwith %}
+
+        &lt;!-- 表单验证 --&gt;
+        {% if form.username.errors %}
+        &lt;b-message type=&quot;is-danger&quot;&gt;
+          &lt;ul class=&quot;errors&quot;&gt;
+            {% for error in form.username.errors %}
+            &lt;li&gt;{{ error }}&lt;/li&gt;
+            {% endfor %}
+          &lt;/ul&gt;
+        &lt;/b-message&gt;
+        {% endif %}
+
+        &lt;div class=&quot;field&quot;&gt;
+          &lt;p class=&quot;control has-icons-left has-icons-right&quot;&gt;
+            {{ form.username(class='input', placeholder='Username') }}
+            &lt;span class=&quot;icon is-small is-left&quot;&gt;
+              &lt;i class=&quot;fas fa-envelope&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+            &lt;span class=&quot;icon is-small is-right&quot;&gt;
+              &lt;i class=&quot;fas fa-check&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+          &lt;p class=&quot;control has-icons-left&quot;&gt;
+            {{ form.password(class='input', placeholder='Password') }}
+            &lt;span class=&quot;icon is-small is-left&quot;&gt;
+              &lt;i class=&quot;fas fa-lock&quot;&gt;&lt;/i&gt;
+            &lt;/span&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;
+          &lt;p class=&quot;control&quot;&gt;
+            &lt;input class=&quot;button is-success is-fullwidth&quot; type=&quot;submit&quot; value=&quot;Login&quot;&gt;
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    {% endblock auth_form %}
+</code></pre>
+<p><code>{{ form.csrf_token }}</code> 隐式的创建一个csrftoken的表单</p>
+<p><code>{{ form.username(class='input', placeholder='Username') }}</code> 
+这样就可以直接获得一个表单html并自动渲染，向该表单增加书香的方式就是像代码中这样传入参数和值即可，当然也可以提前在表单类中定义！</p>
+<p>剩下的注册表单，就当是给大家留作的一个作业，大家自行去参照登录表单完善重构一下，加油哦！我相信你可以！</p>
+<p>到这里我们的表单验证就大概了解了，之后的章节就是基本的增删改查以及表单验证，都是基于我们这些章节学习的知识点，所以之后的章节就不会过多的去讲解每行代码的意思，重心放在逻辑的展示上，如果基础较差的同学，到这里，可以去反复的把前边所有章节的内容去练习，写代码其实就是写的多了就会了，也就理解了，练习 练习 再练习！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

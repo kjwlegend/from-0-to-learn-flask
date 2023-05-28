@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>实现个人中心及权限管理 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item active">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">实现个人中心及权限管理</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">实现权限管理</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">实现个人中心</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">实现个人中心及权限管理</h1>
+<p>教程到这里我们的内容就已经过了95%，学习如逆水行舟，不进则退，互联网技术尤其如此，所以不论学习任何东西都要去写、去思考、去实践，往往看起来非常简单的东西反而自己却无从下手，不是缺乏编程思维就是基础不牢固，无论是那一个原因，通过勤奋不辍的练习都能弥补，知识的分享也是一种学习的手段，祝愿每个看到此教程并且能坚持到这里的同学学有所成！</p>
+<h2 id="_2">实现权限管理</h2>
+<p>在管理后台中比较有名的管理权限模型一般遵循RABC模型去实现，如果这部分内容展开讲的话，那堪比另外一个教程了，那么我们的博客非常简单，就以最简单的方式实现权限的管理，也给大家提供了一个flask权限配置的一个思路！</p>
+<p>我们的用户目前就分类两类，一类是超级管理员，一类是普通用户，对于超级管理员拥有所有权限，可以访问网站的任何url，那么普通用户也就是注册登录的用户，则除了公开的url外只能访问授权的url，这个权限根据url去实现，控制的比较粗糙，但足以说明问题！</p>
+<p>在app/auth/views/auth.py中的load_logged_in_user方法中注入权限标识,代码如下：</p>
+<pre><code class="language-python">@bp.before_app_request
+def load_logged_in_user():
+    # 每个请求之前都会去session中查看user_id来获取用户
+
+    # 注册用户即非管理员用户允许登录后查看的url
+    urls = ['/auth/']
+
+    user_id = session.get('user_id')
+    if user_id is None:
+        g.user = None
+    else:
+        g.user = auth.User.query.get(int(user_id))
+
+        # 权限判断
+        if g.user.is_super_user and g.user.is_active:
+            g.user.has_perm = 1
+        elif not g.user.is_super_user and g.user.is_active and not g.user.is_staff and request.path in urls:
+            g.user.has_perm = 1
+        else:
+            g.user.has_perm = 0
+</code></pre>
+<p>这个函数使用了装饰器方法before_app_request，我们知道这个装饰器的作用是在访问每个url之前去检查用户是否登陆，这个在登录注册那两个章节我们有讲到，根据用户的模型设计我们可以判断is_super_user字段的值去区分是否为管理员还是普通用户，来返回权限标识!</p>
+<pre><code class="language-python">urls = ['/auth/']
+
+ # 权限判断
+if g.user.is_super_user and g.user.is_active:
+    g.user.has_perm = 1
+elif not g.user.is_super_user and g.user.is_active and not g.user.is_staff and request.path in urls:
+    g.user.has_perm = 1
+else:
+    g.user.has_perm = 0
+</code></pre>
+<p>通过g对象给user挂载了一个has_perm的标识，通过他的返回值确认是否有访问urls列表中url的权限</p>
+<p>之后在login_required的装饰器函数中进行权限判断，代码如下：</p>
+<pre><code class="language-python">def login_required(view):
+    # 限制必须登录才能访问的页面装饰器
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            # 给登录url添加一个记录上次访问的url参数，并跳转
+            redirect_to = f&quot;{url_for('auth.login')}?redirect_to={request.path}&quot;
+            return redirect(redirect_to)
+        # 登录成功后对权限进行判断处理
+        if g.user.has_perm:
+            pass
+        else:
+            return '&lt;h1&gt;无权限查看！&lt;/h1&gt;'
+        return view(**kwargs)
+    return wrapped_view
+</code></pre>
+<p>如果没有访问权限，我们直接给他返回了无权限查看的一个提示，配置完这些之后我们就可以去试着更换不同的用户访问管理后台的url试下，并在urls列表中增加url向用户赋予相关的url访问权限！</p>
+<h2 id="_3">实现个人中心</h2>
+<p>个人中心不同于管理后台，个人中心普通用户可以访问，而超级管理员则可以访问个人中心和管理后台，个人中心我们一般用来记录当前登录用户的个人信息，提供当前用户修改自己的信息或查看自己收藏内容或留言内容或和自己相关的一些内容，当然这里的收藏及评论留言功能本教程并没有去实现，但所用到的知识点都是我们本教程中所提到的，所以如果大家需要这些功能，这些功能就留给大家去完成，以检验自己的学习成果！</p>
+<p>在app/auth/views/auth.py中实现个人中心函数视图</p>
+<pre><code class="language-python">@bp.route('/')
+@login_required
+def userinfo():
+    # 用户中心
+    return render_template('userinfo.html')
+</code></pre>
+<p>在app/auth/templates/中创建个人中心模板userinfo.html</p>
+<pre><code class="language-html">{% extends 'admin/index.html' %}
+
+{% block menus %}
+&lt;aside class=&quot;menu&quot;&gt;
+    &lt;p class=&quot;menu-label&quot;&gt;
+        个人中心
+    &lt;/p&gt;
+    &lt;ul class=&quot;menu-list&quot;&gt;
+        &lt;li&gt;&lt;a class=&quot;{% if request.path == '/auth/' %}is-active{% endif %}&quot;
+                href=&quot;{{ url_for('auth.userinfo') }}&quot;&gt;个人信息&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+            &lt;a class=&quot;&quot; href=&quot;&quot;&gt;我的收藏&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a class=&quot;&quot; href=&quot;&quot;&gt;我的评论&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/aside&gt;
+{% endblock menus %}
+
+{% block member %}
+&lt;template&gt;
+    &lt;b-tabs&gt;
+        &lt;b-tab-item label=&quot;个人信息&quot; icon=&quot;account-outline&quot;&gt;
+
+            &lt;div class=&quot;columns is-mobile&quot; style=&quot;border-bottom: #ededed solid 1px; padding-bottom: 1rem&quot;&gt;
+                &lt;div class=&quot;column is-narrow&quot;&gt;
+                    &lt;figure class=&quot;image is-96x96&quot;&gt;
+                        &lt;img class=&quot;is-rounded&quot; src=&quot;/admin/static/{{ g.user['avatar'] }}&quot;&gt;
+                    &lt;/figure&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;column is-narrow&quot;&gt;
+                    &lt;div style=&quot;padding-top: 1.5rem;&quot;&gt;
+                        &lt;h1 class=&quot;title is-size-4&quot;&gt;{{ g.user['username'] }}&lt;/h1&gt;
+                        &lt;p class=&quot;subtitle is-size-6&quot;&gt;暂未设置个性签名&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;column is-narrow-mobile&quot;&gt;
+                    &lt;a class=&quot; button is-light is-pulled-right&quot; href=&quot;&quot; style=&quot;margin-top: 1.8rem&quot;&gt;修改信息&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;columns&quot; style=&quot;padding:1rem 0; &quot;&gt;
+                &lt;div class=&quot;column is-2&quot;&gt;
+                    &lt;p&gt;个人信息&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;column&quot;&gt;
+                    &lt;div class=&quot;columns is-mobile&quot; style=&quot;border-bottom: #ededed solid 1px&quot;&gt;
+                        &lt;div class=&quot;column is-2&quot;&gt;
+                            &lt;span class=&quot; has-text-grey-light&quot;&gt;用户名&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;column is-narrow&quot;&gt;
+                            &lt;span class=&quot; has-text-black-ter&quot;&gt;{{ g.user['username'] }}&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;columns is-mobile&quot; style=&quot;border-bottom: #ededed solid 1px&quot;&gt;
+                        &lt;div class=&quot;column is-2&quot;&gt;
+                            &lt;span class=&quot; has-text-grey-light&quot;&gt;性别&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;column is-narrow&quot;&gt;
+                            &lt;span class=&quot; has-text-black-ter&quot;&gt;暂未设置&lt;/span&gt;
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+                    &lt;div class=&quot;columns is-mobile&quot; style=&quot;border-bottom: #ededed solid 1px&quot;&gt;
+                        &lt;div class=&quot;column is-2&quot;&gt;
+                            &lt;span class=&quot; has-text-grey-light&quot;&gt;邮箱&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;column is-narrow&quot;&gt;
+                            &lt;span class=&quot; has-text-black-ter&quot;&gt;asdas@qq.com&lt;/span&gt;
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+
+                    &lt;div class=&quot;columns is-mobile&quot; style=&quot;border-bottom: #ededed solid 1px&quot;&gt;
+                        &lt;div class=&quot;column is-2&quot;&gt;
+                            &lt;span class=&quot; has-text-grey-light&quot;&gt;地址&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;column is-narrow&quot;&gt;
+                            &lt;span class=&quot; has-text-black-ter&quot;&gt;暂未添加地址&lt;/span&gt;
+                        &lt;/div&gt;
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;columns&quot; style=&quot;padding:1rem 0; &quot;&gt;
+                &lt;div class=&quot;column is-2&quot;&gt;
+                    &lt;p&gt;个人简介&lt;/p&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;column&quot;&gt;
+                    &lt;div class=&quot;content&quot;&gt;
+
+                        暂未设置
+
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+        &lt;/b-tab-item&gt;
+    &lt;/b-tabs&gt;
+&lt;/template&gt;
+{% endblock member %}
+</code></pre>
+<p>这里我们仅仅实现了一个前端样式，有些字段我们并没有创建，这一部分内容也留给大家当做作业去完成！</p>
+<p>最后，我们去修改下导航栏的个人中心按钮，让管理员显示进入管理后台的入口，普通用户只能看见个人中心的入口！</p>
+<p>在app/blog/templates/base.html中修改代码如下：</p>
+<pre><code class="language-html">{% if g.user.is_super_user %}
+    &lt;a class=&quot;button is-success&quot; href=&quot;{{ url_for('admin.index') }}&quot;&gt;管理后台&lt;/a&gt;
+{% else %}
+    &lt;a class=&quot;button is-success&quot; href=&quot;{{ url_for('auth.userinfo') }}&quot;&gt;个人中心&lt;/a&gt;
+{% endif %}
+</code></pre>
+<p>至此，我们的项目的说所有内容就完成了，下来我们就将进入部署环节，看如何通过不同的方式将我们的项目部署到线上！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

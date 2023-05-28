@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>安装Flask-SQLAlchemy - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item active">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#flask-sqlalchemy" class="nav-link">Flask-SQLAlchemy</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#flask-sqlalchemy_1" class="nav-link">安装Flask-SQLAlchemy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">使用</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#mysql" class="nav-link">配置MySQL数据库</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="flask-sqlalchemy">Flask-SQLAlchemy</h1>
+<p>Flask-SQLAlchemy 是 Flask 的扩展，它为您的应用程序添加了对 SQLAlchemy 的支持。它旨在通过提供有用的默认值和额外的帮助程序来简化将 SQLAlchemy 与 Flask 结合使用，从而更轻松地完成常见任务。</p>
+<p>这是官方的介绍，其实对于刚想写个简单博客的同学来说，这个东西说了等于没说，因为他不知道SQLAlchemy是什么？能干什么？所以自然对以上这段话就无从理解！</p>
+<p>我这里简单说一下，无论是博客类网站还是更大的商城类网站，我们在页面上所看到的数据都是存储在数据库，那数据库主要分为关系型数据库和非关系型数据库，那么，如何把数据存储到数据库以及如何把数据库中的数据查询到页面，也就是所谓的增删改查操作，我们都要用到sql语法，当然这又是另外的一个知识点，学起来也是非常的繁琐复杂，那为了我们快速实现增删改查的目的，有大佬就创作了这样一个框架，使用了一种叫做《Object Relation Mapping》对象关系映射的技术，也就是我们所说的ORM，这个在django框架中是自带的，但与SQLAlchemy框架的用法及底层实现有一些区别。这个我们无需去过多关注，我只要知道<strong>SQLAlchemy的API提供了执行数据库CRUD操作的方法，因此我们不必在程序中编写复杂难懂的原始SQL语句，就可以达到增删改查的目的</strong>。</p>
+<p>那么，Flask-SQLAlchemy是对SQLAlchemy的进一步封装，使得更加容易的在Flask项目中使用SQLAlchemy！</p>
+<h2 id="flask-sqlalchemy_1">安装Flask-SQLAlchemy</h2>
+<pre><code class="language-python">pip install Flask-SQLAlchemy
+</code></pre>
+<ul>
+<li>官方文档：https://flask-sqlalchemy.palletsprojects.com/en/2.x/</li>
+</ul>
+<h2 id="_1">使用</h2>
+<p>1、在项目目录（RealProject）的__init__.py中引入SQLAlchemy</p>
+<pre><code class="language-python"># RealProject/__init__.py
+from flask_sqlalchemy import SQLAlchemy
+# 实例化SQLAlchemy对象
+db = SQLAlchemy()
+</code></pre>
+<p>2、在工厂函数create_app中与app绑定关系</p>
+<pre><code class="language-python">def create_app(test_config=None):
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+    )
+
+    # 绑定数据库
+    db.init_app(app)
+
+    ...省略部分代码
+
+    return app
+</code></pre>
+<p>3、创建模型数据</p>
+<p>这一节我们来先创建一个博客的分类模型数据来认识一下模型的创建</p>
+<p>在<code>app/blog/models.py</code>中创建模型如下</p>
+<pre><code class="language-python">from datetime import datetime
+from RealProject import db
+
+class Category(db.Model):
+    &quot;&quot;&quot;分类模型
+    &quot;&quot;&quot;
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    icon = db.Column(db.String(128), nullable=True)
+    add_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, ) # 创建时间
+    pub_date = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False) # 更新时间
+
+    def __repr__(self):
+        return '&lt;Category %r&gt;' % self.name
+</code></pre>
+<p>学习过django的同学有没有一股熟悉的味道，和django的创建模型是不是非常相似，只是一些语法上的不同！</p>
+<p>我们一起来看下这些字段都做了什么？</p>
+<ul>
+<li>id 该模型的主键，类型为Integer，primary_key为True代表主键</li>
+<li>name 分类名称，String类型，可变字符类型，映射到数据库中是varchar类型.</li>
+<li>icon 分类图标，类型与name一致，区别是nullable=True,就是允许为空，即默认值是null</li>
+<li>add_date 创建时间，nullable=False不能为空，default=datetime.utcnow设置为当前时区时间</li>
+<li>pub_date 更新时间，主要关注下onupdate=datetime.utcnow,这个可以更新每次编辑时的时间保存</li>
+</ul>
+<p>其他更多的类型，我们在以后用到的时候再去了解，基本的类型我也整理了一篇文章，大家可以参考！
+类型参考： http://www.lotdoc.cn/blog/detail/172/</p>
+<h2 id="mysql">配置MySQL数据库</h2>
+<p>我们最开始已经说过了项目的默认配置在工厂函数中已经引入了,以下就是项目的默认配置</p>
+<pre><code class="language-python">app.config.from_mapping(
+    SECRET_KEY='dev',
+    DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+)
+</code></pre>
+<p>但是，一般的做法是配置和代码是区别开的，我们现在要让他从文件中读取配置，所以就直接删除这句，或者注释掉即可，最开始引入是为了介绍Flask加载配置文件的几种方法！</p>
+<p>现在我们把所有的配置项移动到项目目录的settings.py文件中，配置如下：</p>
+<pre><code class="language-python">from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DEBUG = True
+
+SECRET_KEY = 'l%3ya7fn3moipdpcltj(tdfcv5^@lj=t5d&amp;72levvls+y*@_4^'
+
+SQLALCHEMY_DATABASE_URI = 'mysql://root:root@127.0.0.1:3306/flaskdb'
+
+SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+</code></pre>
+<p>以上几项配置是链接数据库必须的配置，其中SQLALCHEMY_DATABASE_URI就是链接mysql数据库的url，第一个root是用户名，冒号后的root是密码，3306是mysql数据库默认的端口号，最后一个flaskdb则是数据库名</p>
+<p>接下来修改我们的工厂函数如下所示：</p>
+<pre><code class="language-python">from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from RealProject.settings import BASE_DIR
+
+db = SQLAlchemy()
+
+def create_app(test_config=None):
+    app = Flask(__name__, instance_relative_config=True)
+
+    if test_config is None:
+        CONFIG_PATH = BASE_DIR / 'RealProject/settings.py'
+        app.config.from_pyfile(CONFIG_PATH, silent=True)
+    else:
+        # test_config为一个字典
+        app.config.from_mapping(test_config)
+
+    db.init_app(app)
+
+    # 递归创建目录，确保项目文件存在
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+
+    from app.blog import views as blog
+    app.register_blueprint(blog.bp)    
+    return app
+
+from app.blog import models
+</code></pre>
+<p>做完以上步骤，如果你的数据库没有问题的话，就已经可以连接到数据库了，但是字段此时还并没有同步到数据库，同步字段到数据库的方法是，进入Flask的shell环境，运行以下两个命令即可：</p>
+<pre><code class="language-python">&gt;&gt;&gt; from RealProject import db
+&gt;&gt;&gt; db.create_all()
+</code></pre>
+<p>但是，要进入Flask的shell环境需要先在终端设置项目的环境变量，我这里以Windows系统和本项目为例:</p>
+<p>CMD终端，运行如下命令，即可进入shell环境</p>
+<pre><code class="language-bash">&gt; set FLASK_APP=RealProject
+&gt; set FLASK_ENV=development
+&gt; flask shell
+</code></pre>
+<p>Powershell终端， 运行如下命令，即可进入shell环境</p>
+<pre><code class="language-bash">&gt; $env:FLASK_APP = &quot;RealProject&quot;
+&gt; $env:FLASK_ENV = &quot;development&quot;
+&gt; flask shell
+</code></pre>
+<p>但是，我们不采用这种方法去同步数据库，下一章我们将采用Flask的另外一个扩展Flask-Migrate来同步数据库，他可以进行数据库的版本控制，比如你数据库某些字段已经有了默认数据，他不会去清空重建，而是会进行新增操作，类似于django的makemigrations和migrate两个命令所做的事情！</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

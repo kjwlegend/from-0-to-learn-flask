@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>博客相关模型创建 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item active">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link">博客相关模型创建</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">博客数据库字段规划</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">博客模型类创建</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="_1">博客相关模型创建</h1>
+<p>在之前的章节中我们已经知道模型对应的其实就是数据库字段，通过这种方式创建数据库字段的方式主要依赖的是ORM系统，当然如果你对sql语法非常熟悉，完全可以不用ORM，但使用ORM的好处是有利于避免一些sql注入的风险，对sql不熟悉的同学比较友好，但略微会有性能损失，使用sql语句的话，如果你学的是一知半解，也容易写出一些性能不佳的语句，各有各的优点和不足，没有谁更好，具体眼看你自己的业务场景！</p>
+<h2 id="_2">博客数据库字段规划</h2>
+<p>一个博客我们先从最简单的入手，博客分类、文章内容、文章标签，应该说拥有这三个基本的功能就算是一个非常简单的博客，那么我们就先从这三个功能入手，开始设计数据库字段！</p>
+<h3 id="category">博客分类模型（Category）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否允许为空</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(128)</td>
+<td>否</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td>icon</td>
+<td>varchar(128)</td>
+<td>是</td>
+<td>分类图标</td>
+</tr>
+<tr>
+<td>add_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>添加时间</td>
+</tr>
+<tr>
+<td>pub_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>更新时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post">文章模型（Post）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否允许为空</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>title</td>
+<td>varchar(128)</td>
+<td>否</td>
+<td>文章标题</td>
+</tr>
+<tr>
+<td>desc</td>
+<td>varchar(200)</td>
+<td>是</td>
+<td>文章简介</td>
+</tr>
+<tr>
+<td>has_type</td>
+<td>enum('draft', 'show')</td>
+<td>否</td>
+<td>文章类型（草稿, 发布）</td>
+</tr>
+<tr>
+<td>category_id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>归属分类id</td>
+</tr>
+<tr>
+<td>content</td>
+<td>longtext</td>
+<td>否</td>
+<td>文章内容</td>
+</tr>
+<tr>
+<td>add_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>添加时间</td>
+</tr>
+<tr>
+<td>pub_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>更新时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tag">文章标签（Tag）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否允许为空</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>name</td>
+<td>varchar(128)</td>
+<td>否</td>
+<td>分类名称</td>
+</tr>
+<tr>
+<td>add_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>添加时间</td>
+</tr>
+<tr>
+<td>pub_date</td>
+<td>datetime</td>
+<td>否</td>
+<td>更新时间</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tags">文章与文章标签多对多关系（tags）</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+<th>是否允许为空</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag_id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>文章标签id</td>
+</tr>
+<tr>
+<td>post_id</td>
+<td>int(11)</td>
+<td>否</td>
+<td>文章id</td>
+</tr>
+</tbody>
+</table>
+<p>规划好以上模型的字段后，就是去编写对应的模型类，这里有一些关系需要搞清楚，文章与文章分类是一对多的关系，一个分类下可以有多篇文章，而文章内容与标签之间的关系则是多对多的关系，一个标签可以对应多篇文章，多篇文章也可以对应某一个标签！</p>
+<h2 id="_3">博客模型类创建</h2>
+<p>在<code>app/blog/models.py</code>文件中创建模型类，通过观察，我们发现每个模型都有一个相同的添加时间字段和更新时间字段，那么我们就可以把这两个字段提取到一个基类模型中，然后让所有的模型均继承这个基类模型即可，基类模型不会生成数据库字段，但继承他的模型会继承他里边的字段！</p>
+<p>1、首先需要引入这些模块</p>
+<pre><code class="language-python">from datetime import datetime
+from RealProject import db
+from enum import IntEnum
+from sqlalchemy.dialects.mysql import LONGTEXT
+</code></pre>
+<p>2、创建基类模型BaseModel</p>
+<pre><code class="language-python">class BaseModel(db.Model):
+    &quot;&quot;&quot;基类模型
+    &quot;&quot;&quot;
+    __abstract__ = True
+
+    add_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, ) # 创建时间
+    pub_date = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False) # 更新时间
+</code></pre>
+<p>3、创建分类模型Category</p>
+<pre><code class="language-python">class Category(BaseModel):
+    &quot;&quot;&quot;分类模型
+    &quot;&quot;&quot;
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+    icon = db.Column(db.String(128), nullable=True)
+    post = db.relationship('Post', backref='category', lazy=True)
+
+    def __repr__(self):
+        return '&lt;Category %r&gt;' % self.name
+</code></pre>
+<p>注意，db.relationship()函数用来创建关系，这是一个隐式字段，不会出现在数据库，但可以使用orm的查询语法查到所有关联的数据，外键字段还必须使用外键类来单独声明！</p>
+<p>4、创建文章模型Post</p>
+<pre><code class="language-python">
+class PostPublishType(IntEnum):
+    &quot;&quot;&quot; 文章发布类型
+    &quot;&quot;&quot;
+    draft = 1    # 草稿
+    show = 2     # 发布
+
+# 多对多关系帮助器表
+tags = db.Table('tags',
+    db.Column('tag_id', db.Integer, db.ForeignKey('tag.id'), primary_key=True),
+    db.Column('post_id', db.Integer, db.ForeignKey('post.id'), primary_key=True)
+)
+
+class Post(BaseModel):
+    &quot;&quot;&quot;文章模型
+    &quot;&quot;&quot;
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128), nullable=False)
+    desc = db.Column(db.String(200), nullable=True)
+    has_type = db.Column(db.Enum(PostPublishType), server_default='show', nullable=False) 
+    # 一对多关系
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    content = db.Column(LONGTEXT, nullable=False)
+    # 多对多关系
+    tags = db.relationship('Tag', secondary=tags, lazy='subquery', backref=db.backref('post', lazy=True))
+
+    def __repr__(self):
+        return f'&lt;Post {self.title}&gt;'
+</code></pre>
+<p>category_id字段的创建，它使用了db.ForeignKey()类实例化来创建了这个外键字段，这个会出现在数据库！这就是创建一对多关系字段的方法！</p>
+<p>tags多对多关系则根据官方文档的建议是需要额外定义用于该关系的帮助器表，不建议使用模型，而是使用实际表！至于更详细的一些用法，我们可以参考其官方文档说明！</p>
+<ul>
+<li>官方文档：https://flask-sqlalchemy.palletsprojects.com/en/2.x/</li>
+</ul>
+<p>5、创建文章标签模型</p>
+<pre><code class="language-python">class Tag(BaseModel):
+    &quot;&quot;&quot; 文章标签
+    &quot;&quot;&quot;
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), nullable=False)
+
+    def __repr__(self):
+        return f'&lt;Tag {self.name}&gt;'
+</code></pre>
+<p>创建完以上模型之后，就可以执行迁移命令，注意，别忘记设置环境变量！</p>
+<pre><code>flask db migrate
+flask db upgrade
+</code></pre>
+<p>如果执行以上命令出现问题，可删除整个migrations文件夹，再去数据库删除alembic_version中的迁移记录，之后重新初始化迁移即可！</p>
+<p><img alt="Screenshot" src="img/version.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>掌握增删改查 - Flask博客项目开发实战</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Flask博客项目开发实战</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="index.html" class="nav-link">首页</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">开发 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="dropdown-item">环境配置</a>
+</li>
+                                    
+<li>
+    <a href="%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B.html" class="dropdown-item">快速上手</a>
+</li>
+                                    
+<li>
+    <a href="%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.html" class="dropdown-item">目录结构</a>
+</li>
+                                    
+<li>
+    <a href="%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0.html" class="dropdown-item">工厂函数</a>
+</li>
+                                    
+<li>
+    <a href="%E8%93%9D%E5%9B%BE%E5%BA%94%E7%94%A8.html" class="dropdown-item">蓝图应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AEFlask-SQLAlchemy.html" class="dropdown-item">安装Flask-SQLAlchemy</a>
+</li>
+                                    
+<li>
+    <a href="%E9%85%8D%E7%BD%AEFlask-Migrate.html" class="dropdown-item">配置Flask-Migrate</a>
+</li>
+                                    
+<li>
+    <a href="%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9E%8B%E5%88%9B%E5%BB%BA.html" class="dropdown-item">博客相关模型创建</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="dropdown-item">实现博客首页视图及样式</a>
+</li>
+                                    
+<li>
+    <a href="%E6%8E%8C%E6%8F%A1%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item active">掌握增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建用户相关应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现登录注册功能</a>
+</li>
+                                    
+<li>
+    <a href="%E4%BD%BF%E7%94%A8WTForms%E8%BF%9B%E8%A1%8C%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81.html" class="dropdown-item">使用WTForms进行表单验证</a>
+</li>
+                                    
+<li>
+    <a href="%E5%88%9B%E5%BB%BA%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8.html" class="dropdown-item">创建后台管理应用</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现分类管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E7%AE%A1%E7%90%86%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5.html" class="dropdown-item">实现文章管理增删改查</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现文章标签管理</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD.html" class="dropdown-item">实现用户管理功能</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%85%A8%E7%AB%99%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95%E5%8F%8A%E9%A6%96%E9%A1%B5%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA.html" class="dropdown-item">实现全站导航菜单及首页数据展示</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E9%A1%B5%E5%8F%8A%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85%E9%A1%B5.html" class="dropdown-item">实现分类列表页及文章详情页</a>
+</li>
+                                    
+<li>
+    <a href="%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8Quill.html" class="dropdown-item">集成富文本编辑器Quill</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%96%87%E7%AB%A0%E5%BD%92%E6%A1%A3%E5%8F%8A%E6%A0%87%E7%AD%BE.html" class="dropdown-item">实现侧边栏文章归档及标签</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E5%8F%8A%E6%90%9C%E7%B4%A2.html" class="dropdown-item">实现侧边栏最新文章及搜索</a>
+</li>
+                                    
+<li>
+    <a href="%E5%AE%9E%E7%8E%B0%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83%E5%8F%8A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="dropdown-item">实现个人中心及权限管理</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">部署 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="nginx%2Buwsgi%2Bmysql%2B%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%E9%83%A8%E7%BD%B2.html" class="dropdown-item">nginx+uwsgi+mysql+宝塔面板部署</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" href="%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E8%A7%86%E5%9B%BE%E5%8F%8A%E6%A0%B7%E5%BC%8F.html" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3%E5%BA%94%E7%94%A8.html" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#flask-sqlalchemy" class="nav-link">掌握Flask-SQLAlchemy的增删改查</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">插入记录</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">查询记录</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">更新方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_5" class="nav-link">删除记录</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">常用的查询和过滤方法</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="flask-sqlalchemy">掌握Flask-SQLAlchemy的增删改查</h1>
+<p>既然我们选择了使用ORM框架，那就必须熟练掌握其提供的增删改查方法，在正式编写视图事前，本节内容我们先在shell环境中来了解和熟悉其增删改查的基础方法！</p>
+<p>参考资料：https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#inserting-records</p>
+<h2 id="_1">插入记录</h2>
+<p>这里我们以博客的分类为案例进行演示</p>
+<p>1、首先设置环境变量，进入shell环境</p>
+<p>至于如何导出环境变量请参考《安装并配置Flask-SQLAlchemy》章节，最后同步数据库字段相关内容！</p>
+<p>2、运行如下命令进入shell环境</p>
+<pre><code>flask shell
+</code></pre>
+<p>3、导入模型数据</p>
+<pre><code class="language-python">&gt;&gt;&gt; from RealProject import db
+&gt;&gt;&gt; from app.blog.models import Category, Post
+</code></pre>
+<h3 id="_2">插入一条分类记录</h3>
+<pre><code class="language-python">&gt;&gt;&gt; cate = Category(name='分类一')
+&gt;&gt;&gt; db.session.add(cate)
+&gt;&gt;&gt; db.session.commit()
+&gt;&gt;&gt; cate
+&lt;Category '分类一'&gt;
+</code></pre>
+<p>以上就是插入向数据库插入一条记录的基本思路：</p>
+<ul>
+<li>1、实例化模型的python对象</li>
+<li>2、将该实例化对象添加到回话 db.session.add(cate)</li>
+<li>3、提交该会话 db.session.commit()</li>
+</ul>
+<h2 id="_3">查询记录</h2>
+<p>在查询之前我们先多添加几条分类数据的记录</p>
+<ul>
+<li>拓展，批量插入数据的几种方法：http://www.lotdoc.cn/blog/detail/178/</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; cates = ['分类二', '分类三', '分类四']
+&gt;&gt;&gt; for name in cates:
+...     cate = Category(name=name)       
+...     db.session.add(cate)
+...     db.session.commit()
+...
+&gt;&gt;&gt; Category.query.all()
+[&lt;Category '分类一'&gt;, &lt;Category '分类2'&gt;, &lt;Category '分类3'&gt;, &lt;Category '分类4'&gt;]
+</code></pre>
+<p>查询最常用方法有：all()、first()、get()、filter()、order_by()</p>
+<ul>
+<li>按分类名称检索</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; cate1 = Category.query.filter_by(name='分类一').first()
+&gt;&gt;&gt; cate1.id
+1
+&gt;&gt;&gt; cate1.name
+'分类一'
+</code></pre>
+<p>这里如果传入的分类名称不存在则返回None!</p>
+<ul>
+<li>通过更复杂的表达式查询多个分类：</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; Category.query.filter(Category.name.endswith('分类')).all()
+[]
+&gt;&gt;&gt; Category.query.filter(Category.name.endswith('分类一')).all() 
+[&lt;Category '分类一'&gt;]
+&gt;&gt;&gt; Category.query.filter(Category.name.endswith('2')).all()      
+[&lt;Category '分类2'&gt;]
+&gt;&gt;&gt; Category.query.filter(Category.name.startswith('分')).all()  
+[&lt;Category '分类一'&gt;, &lt;Category '分类2'&gt;, &lt;Category '分类3'&gt;, &lt;Category '分类4'&gt;]
+</code></pre>
+<p>模糊匹配某一个字段，endswith从字段的最后一个字符开始匹配，startswith从第一个字符开始匹配</p>
+<ul>
+<li>按某字段进行排序：</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; Category.query.order_by(Category.add_date).all()
+[&lt;Category '分类一'&gt;, &lt;Category '分类2'&gt;, &lt;Category '分类3'&gt;, &lt;Category '分类4'&gt;]
+&gt;&gt;&gt; Category.query.order_by(-Category.add_date).all()
+[&lt;Category '分类2'&gt;, &lt;Category '分类3'&gt;, &lt;Category '分类4'&gt;, &lt;Category '分类一'&gt;]
+</code></pre>
+<ul>
+<li>限制查询数量</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; Category.query.limit(1).all()
+[&lt;Category '分类一'&gt;]
+&gt;&gt;&gt; Category.query.limit(2).all() 
+[&lt;Category '分类一'&gt;, &lt;Category '分类2'&gt;]
+&gt;&gt;&gt; Category.query.limit(3).all() 
+[&lt;Category '分类一'&gt;, &lt;Category '分类2'&gt;, &lt;Category '分类3'&gt;]
+</code></pre>
+<ul>
+<li>按住键查询</li>
+</ul>
+<pre><code class="language-python">&gt;&gt;&gt; Category.query.get(1)
+&lt;Category '分类一'&gt;
+</code></pre>
+<h2 id="_4">更新方法</h2>
+<pre><code class="language-python">cate_2 = Category.query.get(2)
+cate_2.name = '分类二new'
+db.session.commit()
+</code></pre>
+<h2 id="_5">删除记录</h2>
+<pre><code class="language-python">&gt;&gt;&gt; cate = Category.query.get(1)
+&gt;&gt;&gt; db.session.delete(cate)
+&gt;&gt;&gt; db.session.commit()
+</code></pre>
+<h2 id="_6">常用的查询和过滤方法</h2>
+<table>
+<thead>
+<tr>
+<th>过滤方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter()</td>
+<td>使用指定的规则过滤记录，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td>filter_by()</td>
+<td>使用指定规则过滤记录（以关键字表达式的形式），返回新产生的查询对象</td>
+</tr>
+<tr>
+<td>order_by()</td>
+<td>根据指定条件对记录进行排序，返回新产生的查询对象</td>
+</tr>
+<tr>
+<td>group_by()</td>
+<td>根据指定条件对记录进行分组，返回新产生的查询对象</td>
+</tr>
+</tbody>
+</table>
+<p>下面是一些常用的查询方法：</p>
+<table>
+<thead>
+<tr>
+<th>查询方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all()</td>
+<td>返回包含所有查询记录的列表</td>
+</tr>
+<tr>
+<td>first()</td>
+<td>返回查询的第一条记录，如果未找到，则返回 None</td>
+</tr>
+<tr>
+<td>get(id)</td>
+<td>传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 None</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>返回查询结果的数量</td>
+</tr>
+<tr>
+<td>first_or_404()</td>
+<td>返回查询的第一条记录，如果未找到，则返回 404 错误响应</td>
+</tr>
+<tr>
+<td>get_or_404(id)</td>
+<td>传入主键值作为参数，返回指定主键值的记录，如果未找到，则返回 404 错误响应</td>
+</tr>
+<tr>
+<td>paginate()</td>
+<td>返回一个 Pagination 对象，可以对记录进行分页处理</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
