@@ -13,7 +13,7 @@
     </div>
     {% block button %}
     <div class=" is-pulled-right">
-        <a href="" class=" button is-primary is-light">
+        <a href="{{ url_for('admin.category_add') }}" class=" button is-primary is-light">
             <span class="icon"><i class="mdi mdi-plus-thick"></i></span>
             <span>添加分类</span>
         </a>
@@ -56,10 +56,10 @@
                 <td>{{ cate.id }}</td>
                 <td>{{ cate.name }}</td>
                 <td>{{ cate.icon }}</td>
-                <td>{{ cate.add_date }}</td>
+                <td>{{ cate.create_time }}</td>
                 <td>
                     <div class="tags">
-                        <a href="" class="tag is-success is-light">
+                        <a href="{{ url_for('admin.category_edit', id=cate.id) }}" class="tag is-success is-light">
                             <span class="icon">
                                 <i class="mdi mdi-square-edit-outline"></i>
                             </span>
