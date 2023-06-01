@@ -21,8 +21,11 @@
     </div>
     <div class="is-block">
         <div class="box has-background-light is-shadowless level">
-            <a href="" class=" is-danger button level-left">删除</a>
-            <div class="level-right">
+      
+            {% if id != 0 %}
+          <a href=" {{ url_for('admin.category_delete', id=id) }} " class=" is-danger button level-left">删除</a>
+               {% endif %}  
+          <div class="level-right">
                 <a href="{{ url_for('admin.category') }}" class="button is-primary is-light mr-2">返回</a>
                 <input type="submit" value="保存" class=" button is-success">
             </div>
@@ -31,4 +34,4 @@
 
 </form>
 {% endblock table_content %}
-    
+
